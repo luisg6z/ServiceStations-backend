@@ -1,0 +1,30 @@
+import psycopg
+
+#keys
+from src.config.keys import database, user, host, port, password
+
+class EmployeeConnection():
+    
+    conn= None
+    def __init__(self):
+        try:
+            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port} password={password}")
+        except psycopg.OperationalError as err:
+            print(err)
+            self.conn.close()
+    
+    def read_all_employees(self):
+        with self.conn.cursor() as cur:
+            data =cur.execute("""SELECT * FROM employees;""").fetchall()
+            
+            employees = []
+            for emp in data:
+                dic = {}
+                dic["emp_id"] = emp[0]
+                dic["first_name"] = emp[1]
+                dic["last_name"] = emp[2]
+                dic["adress"] = emp[3]
+                dic["email"] = emp[4]
+                employees.append(dic)
+            
+            return employees
