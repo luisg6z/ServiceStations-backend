@@ -7,6 +7,6 @@ employee_router = APIRouter()
 
 conn = EmployeeConnection()
 
-@employee_router.get("/drivers", status_code=HTTP_200_OK)
+@employee_router.get("/employee", status_code=HTTP_200_OK)
 def read_employees():
     return conn.read_all_employees()
