@@ -3,7 +3,7 @@ import psycopg
 #keys
 from src.config.keys import database, user, host, port, password
 
-class EmployeeConnection():
+class  ownersConnection():
     
     conn = None
     def __init__(self):
@@ -13,18 +13,16 @@ class EmployeeConnection():
             print(err)
             
             
-    def read_all_employees(self):
+    def read_all_owners(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM Employees;""").fetchall()
+            data =cur.execute("""SELECT * FROM  Owners;""").fetchall()
             
-            employees = []
+            owners= []
             for emp in data:
                 dic = {}
-                dic["emp_id"] = emp[0]
-                dic["first_name"] = emp[1]
-                dic["last_name"] = emp[2]
-                dic["adress"] = emp[3]
-                dic["email"] = emp[4]
-                employees.append(dic)
+                dic["owner_id"] = emp[0]
+                dic["email"] = emp[1]
+                dic["owner_name"] = emp[2]
+                owners.append(dic)
             
-            return employees
+            return  owners
