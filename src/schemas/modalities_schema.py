@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
-class modalities(BaseModel):
+class Modalities(BaseModel):
     modality_id : str
     descrpt : str
