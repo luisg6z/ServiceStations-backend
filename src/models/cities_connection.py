@@ -8,14 +8,14 @@ class citiesConnection():
     conn = None
     def __init__(self):
         try:
-            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}")
+            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port} password = {password}")
         except psycopg.OperationalError as err:
             print(err)
             
             
     def read_all_cities(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  Cities;""").fetchall()
+            data =cur.execute("""SELECT * FROM  cities;""").fetchall()
             
             cities = []
             for emp in data:

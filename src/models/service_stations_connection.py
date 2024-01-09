@@ -8,14 +8,14 @@ class  ServiceStationsConnection():
     conn = None
     def __init__(self):
         try:
-            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}")
+            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}  password = {password}")
         except psycopg.OperationalError as err:
             print(err)
             
             
     def read_all_ServiceStations(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  ServiceStations;""").fetchall()
+            data =cur.execute("""SELECT * FROM  servicestations;""").fetchall()
             
             ServiceStations= []
             for emp in data:

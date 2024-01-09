@@ -8,14 +8,14 @@ class tankertrucksConnection():
     conn = None
     def __init__(self):
         try:
-            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}")
+            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}  password = {password}")
         except psycopg.OperationalError as err:
             print(err)
             
             
     def read_all_tankertrucks(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM TankerTrucks;""").fetchall()
+            data =cur.execute("""SELECT * FROM tankertrucks;""").fetchall()
             
             tankertrucks = []
             for emp in data:

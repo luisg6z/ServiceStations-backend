@@ -8,14 +8,14 @@ class  ratesConnection():
     conn = None
     def __init__(self):
         try:
-            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}")
+            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}  password = {password}")
         except psycopg.OperationalError as err:
             print(err)
             
             
     def read_all_rates(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  Rates;""").fetchall()
+            data =cur.execute("""SELECT * FROM  rates;""").fetchall()
             
             rates= []
             for emp in data:
