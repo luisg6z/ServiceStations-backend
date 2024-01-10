@@ -26,4 +26,9 @@ class tankertrucksConnection():
             
             return tankertrucks
         
+    def write_tanker_truck(self, tank_truck):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO tankertrucks(plateTT, capacity_lit) VALUES
+                        (%(plateTT)s, %(capacity_lit)s)""", tank_truck)
+            self.conn.commit()
         

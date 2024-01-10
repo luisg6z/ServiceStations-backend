@@ -28,3 +28,9 @@ class EmployeeConnection():
                 employees.append(dic)
             
             return employees
+        
+    def write_employee(self, employee):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO employees(emp_id, first_name, last_name, adress, email) VALUES
+                        (%(emp_id)s, %(first_name)s, %(last_name)s, %(adress)s, %(email)s);""", employee)
+            self.conn.commit()

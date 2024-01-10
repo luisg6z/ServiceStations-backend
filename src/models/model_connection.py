@@ -25,4 +25,10 @@ class ModelsConnection():
                 dic["type_vehicle"] = emp[2]
                 models.append(dic)
             
-            return   models
+            return models
+    
+    def write_model(self, model):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO models(model_name, brand, type_vehicle) VALUES
+                        (%(mod_name)s, %(brand)s, %(type_vehicle)s)""", model)
+            self.conn.commit()

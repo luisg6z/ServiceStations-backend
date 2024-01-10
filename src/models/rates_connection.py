@@ -24,4 +24,10 @@ class RatesConnection():
                 dic["rates_value"] = emp[1]
                 rates.append(dic)
             
-            return  rates
+            return rates
+    
+    def write_rate(self, rate):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO rates(rate_date, rates_value) VALUES
+                        (%(rate_date)s, %(rates_value)s)""", rate)
+            self.conn.commit()
