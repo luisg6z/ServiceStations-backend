@@ -11,3 +11,9 @@ conn = EmployeeConnection()
 @employee_router.get("/employee", status_code=HTTP_200_OK)
 def read_employees():
     return conn.read_all_employees()
+
+@employee_router.post("/employee/insert", status_code=HTTP_201_CREATED)
+def create_employee( employee : Employee):
+    data = dict(employee)
+    conn.write_employee(data)
+    return Response(status_code=HTTP_201_CREATED)

@@ -11,3 +11,9 @@ conn = DriversConnection()
 @drivers_router.get("/drivers", status_code=HTTP_200_OK)
 def read_Drivers():
     return conn.read_all_drivers()
+
+@drivers_router.post("/drivers/insert", status_code=HTTP_201_CREATED)
+def create_driver(driver : Drivers):
+    data = dict(driver)
+    conn.write_driver(data)
+    return Response(status_code=HTTP_201_CREATED)
