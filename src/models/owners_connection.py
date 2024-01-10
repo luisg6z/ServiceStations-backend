@@ -26,3 +26,9 @@ class OwnersConnection():
                 owners.append(dic)
             
             return  owners
+        
+    def write_owners(self,owners):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO owners(owner_id,email,owner_name) VALUES
+                        (%(owner_id)s, %(email)s, %(owner_name)s)""", owners)
+            self.conn.commit()    

@@ -28,4 +28,10 @@ class  DispatchedConnection():
                 Dispatched.append(dic)
             
             return Dispatched
+        
+    def write_Dispatched(self, Dispatched):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO Dispatched(station_rif,plate,dispatch_date,liters,Bs) VALUES
+                (%(station_rif)s, %(plate)s, %(dispatch_date)s, %(liters)s, %(Bs)s)""", Dispatched)
+            self.conn.commit()    
       

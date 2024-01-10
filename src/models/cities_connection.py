@@ -26,3 +26,8 @@ class citiesConnection():
                 cities.append(dic)
             
             return cities
+    def write_cities(self, cities):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO cities(city_id,city_name,state_id) VALUES
+                (%(city_id)s, %(city_name)s, %(state_id)s)""", cities)
+            self.conn.commit()

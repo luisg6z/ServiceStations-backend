@@ -25,4 +25,9 @@ class  OwnersPhonesConnection():
                 OwnersPhones.append(dic)
             
             return OwnersPhones 
-      
+        
+    def write_OwnersPhones(self, OwnersPhones):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO OwnersPhones(owner_id, phone_number_own) VALUES
+                        (%(owner_id)s, %(phone_number_own)s)""", OwnersPhones)
+            self.conn.commit()      

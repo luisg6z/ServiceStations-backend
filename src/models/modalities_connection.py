@@ -25,3 +25,10 @@ class modalitiesConnection():
                 modalities.append(dic)
             
             return modalities
+        
+    def write_modalities(self,modalities):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO modalities(modality_id,descrpt) VALUES
+                        (%(modality_id)s, %(descrpt)s, )""", modalities)
+            self.conn.commit()
+    

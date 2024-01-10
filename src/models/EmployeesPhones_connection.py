@@ -25,4 +25,11 @@ class  EmployeesPhonesConnection():
                 EmployeesPhones.append(dic)
             
             return EmployeesPhones
+        
+    def write_EmployeesPhones(self, EmployeesPhones):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO EmployeesPhones(emp_id,phone_number_emp) VALUES
+                        (%(emp_id)s, %(phone_number_emp)s)""", EmployeesPhones)
+            self.conn.commit()
+    
       

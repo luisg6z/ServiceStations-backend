@@ -25,3 +25,9 @@ class  statesConnection():
                 states.append(dic)
             
             return  states
+    def write_states(self,states):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO statess(state_id,state_name) VALUES
+                        (%(state_id)s, %(state_name)s, )""", states)
+            self.conn.commit()
+        
