@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from datetime import date
 
 class Payments(BaseModel):
-    payment_id: int
     payment_date : date
     amount : float
     payment_type : str
