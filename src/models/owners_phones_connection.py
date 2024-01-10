@@ -3,7 +3,7 @@ import psycopg
 #keys
 from src.config.keys import database, user, host, port, password
 
-class modalitiesConnection():
+class  OwnersPhonesConnection():
     
     conn = None
     def __init__(self):
@@ -13,15 +13,16 @@ class modalitiesConnection():
             print(err)
             
             
-    def read_all_modalities(self):
+    def read_all_OwnersPhones(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM modalities;""").fetchall()
+            data =cur.execute("""SELECT * FROM  ownersphones ;""").fetchall()
             
-            modalities = []
+            OwnersPhones= []
             for emp in data:
                 dic = {}
-                dic["modality_id"] = emp[0]
-                dic["descrpt"] = emp[1]
-                modalities.append(dic)
+                dic["owner_id"] = emp[0]
+                dic["phone_number_own"] = emp[1]
+                OwnersPhones.append(dic)
             
-            return modalities
+            return OwnersPhones 
+      
