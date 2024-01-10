@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
-from src.models.ServiceStations_connection import ServiceStationsConnection
+from src.models.service_stations_connection import ServiceStationsConnection
 ServiceStations_router = APIRouter()
 
 conn =ServiceStationsConnection()
