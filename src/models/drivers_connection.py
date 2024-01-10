@@ -8,7 +8,7 @@ class DriversConnection():
     conn = None
     def __init__(self):
         try:
-            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}  password = {password}")
+            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port} password={password}")
         except psycopg.OperationalError as err:
             print(err)
             
@@ -25,3 +25,9 @@ class DriversConnection():
                 drivers.append(dic)
             
             return drivers
+    
+    def write_driver(self, driver):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO drivers(driver_id, driver_name) VALUES
+                        (%(driver_id)s, %(driver_name)s)""", driver)
+            self.conn.commit()
