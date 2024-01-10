@@ -1,7 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
 from src.models.drivers_connection import DriversConnection
+from src.schemas.drivers_schema import Drivers
 
 drivers_router = APIRouter()
 
