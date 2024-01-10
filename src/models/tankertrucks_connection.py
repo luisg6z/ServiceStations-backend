@@ -8,7 +8,7 @@ class tankertrucksConnection():
     conn = None
     def __init__(self):
         try:
-            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port}")
+            self.conn = psycopg.connect(f"dbname={database} user={user} host={host} port={port} password={password}")
         except psycopg.OperationalError as err:
             print(err)
             
