@@ -7,6 +7,6 @@ owners_router = APIRouter()
 
 conn =OwnersConnection()
 
-@owners_router.get("/states", status_code=HTTP_200_OK)
+@owners_router.get("/owners", status_code=HTTP_200_OK)
 def read_all_owners():
     return conn.read_all_owners()

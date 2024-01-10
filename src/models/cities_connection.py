@@ -15,7 +15,7 @@ class citiesConnection():
             
     def read_all_cities(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  Cities;""").fetchall()
+            data =cur.execute("""SELECT * FROM  cities;""").fetchall()
             
             cities = []
             for emp in data:

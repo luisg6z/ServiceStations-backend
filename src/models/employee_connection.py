@@ -15,7 +15,7 @@ class EmployeeConnection():
             
     def read_all_employees(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM Employees;""").fetchall()
+            data =cur.execute("""SELECT * FROM employees;""").fetchall()
             
             employees = []
             for emp in data:

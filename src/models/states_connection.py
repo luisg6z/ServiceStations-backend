@@ -15,7 +15,7 @@ class  statesConnection():
             
     def read_all_states(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  States;""").fetchall()
+            data =cur.execute("""SELECT * FROM  states;""").fetchall()
             
             states= []
             for emp in data:

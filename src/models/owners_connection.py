@@ -15,7 +15,7 @@ class OwnersConnection():
             
     def read_all_owners(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  Owners;""").fetchall()
+            data =cur.execute("""SELECT * FROM  owners;""").fetchall()
             
             owners= []
             for emp in data:

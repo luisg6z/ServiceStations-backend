@@ -15,7 +15,7 @@ class DriversConnection():
             
     def read_all_drivers(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM Drivers;""").fetchall()
+            data =cur.execute("""SELECT * FROM drivers;""").fetchall()
             
             drivers = []
             for emp in data:

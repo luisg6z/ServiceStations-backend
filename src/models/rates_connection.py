@@ -15,7 +15,7 @@ class RatesConnection():
             
     def read_all_rates(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  Rates;""").fetchall()
+            data =cur.execute("""SELECT * FROM  rates;""").fetchall()
             
             rates= []
             for emp in data:
