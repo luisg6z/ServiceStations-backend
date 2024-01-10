@@ -32,4 +32,24 @@ class  PaymentsConnection():
                 Payments.append(dic)
             
             return Payments
-      
+    def write_payment(self, payment):
+         with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO payments(
+                payment_date,
+                amount,
+                payment_date,
+                card_number,
+                bank,
+                currency,
+                station_rif,
+                plate
+                ) VALUES (
+                    %(payment_date)s,
+                    %(amount)s,
+                    %(payment_date)s,
+                    %(card_number)s,
+                    %(bank)s,
+                    %(currency)s,
+                    %(station_rif)s,
+                    %(plate)s);""", payment)
+            self.conn.commit()
