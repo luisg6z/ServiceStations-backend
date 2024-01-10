@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
-from src.models.tankertrucks_connection import tankertrucksConnection
-from src.schemas.tankertrucks_schema import TankerTrucks
+from src.models.tanker_trucks_connection import tankertrucksConnection
+from src.schemas.tanker_trucks_schema import TankerTrucks
 
 tankertrucks_router = APIRouter()
 
