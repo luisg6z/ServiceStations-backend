@@ -2,7 +2,7 @@ from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
 from src.models.rates_connection import RatesConnection
-from src.schemas.rates_schemas import Rates
+from src.schemas.rates_schema import Rates
 
 rates_router = APIRouter()
 

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
 from src.models.model_connection import  ModelsConnection
-from src.schemas.model_schemas import Models
+from src.schemas.model_schema import Models
 
 models_router = APIRouter()
 
