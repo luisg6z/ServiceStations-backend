@@ -15,7 +15,13 @@ class EmployeeConnection():
             
     def read_all_employees(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM employees;""").fetchall()
+            data =cur.execute("""SELECT
+                              emp_id,
+                              first_name,
+                              last_name,
+                              adress,
+                              email
+                              FROM employees;""").fetchall()
             
             employees = []
             for emp in data:
@@ -31,6 +37,23 @@ class EmployeeConnection():
         
     def write_employee(self, employee):
         with self.conn.cursor() as cur:
-            cur.execute("""INSERT INTO employees(emp_id, first_name, last_name, adress, email) VALUES
-                        (%(emp_id)s, %(first_name)s, %(last_name)s, %(adress)s, %(email)s);""", employee)
+            cur.execute("""INSERT INTO employees(
+                emp_id,
+                first_name,
+                last_name,
+                adress, 
+                email
+                ) VALUES(
+                    %(emp_id)s,
+                    %(first_name)s,
+                    %(last_name)s,
+                    %(adress)s,
+                    %(email)s);""", employee)
+            
+            cur.execute("""INSERT INTO EmployeesPhones(
+                emp_id,
+                phone_number_emp
+                ) VALUES(
+                    %(emp_id)s,
+                    %(phone)s)""", employee)
             self.conn.commit()

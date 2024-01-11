@@ -15,7 +15,15 @@ class  VehiclesConnection():
             
     def read_all_Vehicles(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  vehicles;""").fetchall()
+            data =cur.execute("""SELECT
+                              plate,
+                              model,
+                              capacity,
+                              year_release,
+                              serial_bodywork,
+                              serial_chassis,
+                              owner_id
+                              FROM vehicles;""").fetchall()
             
             Vehicles= []
             for emp in data:
@@ -29,5 +37,24 @@ class  VehiclesConnection():
                 dic["owner_id"] = emp[6]
                 Vehicles.append(dic)
             
-            return  Vehicles
-      
+            return Vehicles
+    
+    def write_Vehicles(self,Vehicles):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO Vehicles(
+                plate,
+                model,
+                capacity,
+                year_release,
+                serial_bodywork,
+                serial_chassis,
+                owner_id
+                ) VALUES(
+                    %(plate)s,
+                    %(model)s,
+                    %(capacity)s,
+                    %(year_release)s,
+                    %(serial_bodywork)s,
+                    %(serial_chassis)s,
+                    %(owner_id)s)""", Vehicles)
+            self.conn.commit()

@@ -15,7 +15,14 @@ class  SuppliesConnection():
             
     def read_all_Supplies(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  supplies;""").fetchall()
+            data =cur.execute("""SELECT
+                              station_rif,
+                              plate,
+                              supplies_date,
+                              liters,
+                              driver_id,
+                              plateTT
+                              FROM  supplies;""").fetchall()
             
             Supplies= []
             for emp in data:

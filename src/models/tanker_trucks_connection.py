@@ -15,7 +15,10 @@ class tankertrucksConnection():
             
     def read_all_tankertrucks(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM TankerTrucks;""").fetchall()
+            data =cur.execute("""SELECT
+                              plateTT,
+                              capacity_lit
+                              FROM TankerTrucks;""").fetchall()
             
             tankertrucks = []
             for emp in data:

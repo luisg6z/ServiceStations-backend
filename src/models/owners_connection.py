@@ -15,7 +15,11 @@ class OwnersConnection():
             
     def read_all_owners(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT * FROM  owners;""").fetchall()
+            data =cur.execute("""SELECT
+                              owner_id,
+                              email,
+                              owner_name
+                              FROM  owners;""").fetchall()
             
             owners= []
             for emp in data:
@@ -26,3 +30,23 @@ class OwnersConnection():
                 owners.append(dic)
             
             return  owners
+    
+    def write_owners(self,owners):
+        with self.conn.cursor() as cur:
+            cur.execute("""INSERT INTO owners(
+                owner_id,
+                email,
+                owner_name
+                ) VALUES(
+                    %(owner_id)s,
+                    %(email)s,
+                    %(owner_name)s)""", owners)
+            
+            cur.execute("""INSERT INTO OwnersPhones(
+                owner_id,
+                phone_number_own
+                ) VALUES(
+                    %(owner_id)s,
+                    %(phone)s)""", owners)
+            
+            self.conn.commit()
