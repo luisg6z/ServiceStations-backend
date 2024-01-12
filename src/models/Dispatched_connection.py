@@ -18,7 +18,7 @@ class  DispatchedConnection():
             data =cur.execute("""SELECT 
                               station_rif,
                               plate,
-                              litters,
+                              liters,
                               dispatch_date,
                               bs
                               FROM dispatched;""").fetchall()

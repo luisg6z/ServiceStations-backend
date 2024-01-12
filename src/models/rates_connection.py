@@ -16,7 +16,7 @@ class RatesConnection():
     def read_all_rates(self):
         with self.conn.cursor() as cur:
             data =cur.execute("""SELECT
-                              rate_value,
+                              rate_date,
                               rates_value
                               FROM  rates;""").fetchall()
             
