@@ -40,3 +40,13 @@ class DriversConnection():
                             %(driver_id)s,
                             %(driver_name)s)""", driver)
             self.conn.commit()
+            
+    def update_driver(self, driver):
+        with self.conn.cursor() as cur:
+            cur.execute("""
+                        UPDATE drivers
+                        SET
+                        driver_name = %(driver_name)s
+                        WHERE driver_id = %(driver_id)s
+                        """, driver)
+            self.conn.commit()
