@@ -8,11 +8,11 @@ rates_router = APIRouter()
 
 conn =RatesConnection()
 
-@rates_router.get("/rates", status_code=HTTP_200_OK)
+@rates_router.get("/rates", status_code=HTTP_200_OK, tags=["Tasas"])
 def read_all_rates():
     return conn.read_all_rates()
 
-@rates_router.post("/rates/insert", status_code=HTTP_201_CREATED)
+@rates_router.post("/rates/insert", status_code=HTTP_201_CREATED, tags=["Tasas"])
 def create_rate(rate : Rates):
     data = dict(rate)
     conn.write_rate(data)

@@ -7,6 +7,6 @@ Dispatched_router = APIRouter()
 
 conn =DispatchedConnection()
 
-@Dispatched_router.get("/Dispatched", status_code=HTTP_200_OK)
+@Dispatched_router.get("/Dispatched", status_code=HTTP_200_OK, tags=["Despachan"])
 def read_all_Dispatched():
     return conn.read_all_Dispatched()

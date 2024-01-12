@@ -8,11 +8,11 @@ Payments_router = APIRouter()
 
 conn =PaymentsConnection()
 
-@Payments_router.get("/Payments", status_code=HTTP_200_OK)
+@Payments_router.get("/Payments", status_code=HTTP_200_OK, tags=["Pagos"])
 def read_all_Payments():
     return conn.read_all_Payments()
 
-@Payments_router.post("/payments/insert", status_code=HTTP_201_CREATED)
+@Payments_router.post("/payments/insert", status_code=HTTP_201_CREATED, tags=["Pagos"])
 def create_payment(payment : Payments):
     data = dict(Payments)
     conn.write_payment()

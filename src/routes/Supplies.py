@@ -7,6 +7,6 @@ Supplies_router = APIRouter()
 
 conn =SuppliesConnection()
 
-@Supplies_router.get("/Supplies", status_code=HTTP_200_OK)
+@Supplies_router.get("/Supplies", status_code=HTTP_200_OK, tags=["Surte"])
 def read_all_Supplies():
     return conn.read_all_Supplies()

@@ -7,6 +7,6 @@ Applies_router = APIRouter()
 
 conn =AppliesConnection()
 
-@Applies_router.get("/Applies", status_code=HTTP_200_OK)
+@Applies_router.get("/Applies", status_code=HTTP_200_OK, tags=["Aplica"])
 def read_all_Applies():
     return conn.read_all_Applies()

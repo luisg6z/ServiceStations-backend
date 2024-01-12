@@ -8,11 +8,11 @@ employee_router = APIRouter()
 
 conn = EmployeeConnection()
 
-@employee_router.get("/employee", status_code=HTTP_200_OK)
+@employee_router.get("/employee", status_code=HTTP_200_OK, tags=["Empleado"])
 def read_employees():
     return conn.read_all_employees()
 
-@employee_router.post("/employee/insert", status_code=HTTP_201_CREATED)
+@employee_router.post("/employee/insert", status_code=HTTP_201_CREATED, tags=["Empleado"])
 def create_employee( employee : Employee):
     data = dict(employee)
     conn.write_employee(data)

@@ -7,6 +7,6 @@ modalities_router = APIRouter()
 
 conn =modalitiesConnection()
 
-@modalities_router.get("/modalities", status_code=HTTP_200_OK)
+@modalities_router.get("/modalities", status_code=HTTP_200_OK, tags=["Modalidades"])
 def read_modalities():
     return conn.read_all_modalities()

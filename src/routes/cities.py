@@ -7,6 +7,6 @@ cities_router = APIRouter()
 
 conn = citiesConnection()
 
-@cities_router.get("/cities", status_code=HTTP_200_OK)
+@cities_router.get("/cities", status_code=HTTP_200_OK, tags=["Ciudades"])
 def read_cities():
     return conn.read_all_cities()

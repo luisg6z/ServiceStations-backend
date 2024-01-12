@@ -6,6 +6,6 @@ Drives_router = APIRouter()
 
 conn =DrivesConnection()
 
-@Drives_router.get("/Drives", status_code=HTTP_200_OK)
+@Drives_router.get("/Drives", status_code=HTTP_200_OK, tags=["Manejan"])
 def read_all_Drives():
     return conn.read_all_Drives()

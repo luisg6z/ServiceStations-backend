@@ -7,6 +7,6 @@ WorksIn_router = APIRouter()
 
 conn = WorksInConnection()
 
-@ WorksIn_router.get("/WorksIn", status_code=HTTP_200_OK)
+@WorksIn_router.get("/WorksIn", status_code=HTTP_200_OK, tags=["Trabaja en"])
 def read_all_WorksIn():
     return conn.read_all_WorksIn()

@@ -7,6 +7,6 @@ Vehicles_router = APIRouter()
 
 conn =VehiclesConnection()
 
-@Vehicles_router.get("/Vehicles", status_code=HTTP_200_OK)
+@Vehicles_router.get("/Vehicles", status_code=HTTP_200_OK, tags=["Vehiculos"])
 def read_all_Vehicles():
     return conn.read_all_Vehicles()

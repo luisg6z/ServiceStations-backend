@@ -7,6 +7,6 @@ states_router = APIRouter()
 
 conn =statesConnection()
 
-@states_router.get("/states", status_code=HTTP_200_OK)
+@states_router.get("/states", status_code=HTTP_200_OK, tags=["Estados"])
 def read_all_states():
     return conn.read_all_states()

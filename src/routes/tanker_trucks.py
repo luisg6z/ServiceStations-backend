@@ -8,11 +8,11 @@ tankertrucks_router = APIRouter()
 
 conn = tankertrucksConnection()
 
-@tankertrucks_router.get("/tanker-trucks", status_code=HTTP_200_OK)
+@tankertrucks_router.get("/tanker-trucks", status_code=HTTP_200_OK, tags=["Camiones Cisterna"])
 def read_tankertrucks():
     return conn.read_all_tankertrucks()
 
-@tankertrucks_router.post("/tanker-trucks/insert", status_code=HTTP_201_CREATED)
+@tankertrucks_router.post("/tanker-trucks/insert", status_code=HTTP_201_CREATED, tags=["Camiones Cisterna"])
 def create_tabker_truck(tank_truck : TankerTrucks):
     data = dict(tank_truck)
     conn.write_tanker_truck(data)

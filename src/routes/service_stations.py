@@ -8,11 +8,11 @@ ServiceStations_router = APIRouter()
 
 conn =ServiceStationsConnection()
 
-@ServiceStations_router.get("/ServiceStations", status_code=HTTP_200_OK)
+@ServiceStations_router.get("/ServiceStations", status_code=HTTP_200_OK, tags=["Estaciones de servicio"])
 def read_all_ServiceStations():
     return conn.read_all_ServiceStations()
 
-@ServiceStations_router.post("/service-stations/insert", status_code=HTTP_201_CREATED)
+@ServiceStations_router.post("/service-stations/insert", status_code=HTTP_201_CREATED, tags=["Estaciones de servicio"])
 def create_payment( serv_station : ServiceStations):
     data = dict(serv_station)
     conn.write_service_station(data)
