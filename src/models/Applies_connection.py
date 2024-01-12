@@ -15,11 +15,12 @@ class  AppliesConnection():
             
     def read_all_Applies(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT 
-                              modality_id,
-                              city_id,
-                              aplies_start_date,
-                              aplies_end_date
+            data =cur.execute("""
+                              SELECT 
+                                modality_id,
+                                city_id,
+                                aplies_start_date,
+                                aplies_end_date
                               FROM applies;""").fetchall()
             
             Applies= []

@@ -15,10 +15,11 @@ class ModelsConnection():
             
     def read_all_models(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT
-                              model_name,
-                              brand,
-                              type_vehicle
+            data =cur.execute("""
+                              SELECT
+                                model_name,
+                                brand,
+                                type_vehicle
                               FROM models;""").fetchall()
             
             models= []
@@ -33,12 +34,13 @@ class ModelsConnection():
     
     def write_model(self, model):
         with self.conn.cursor() as cur:
-            cur.execute("""INSERT INTO models(
-                model_name,
-                brand,
-                type_vehicle
-                ) VALUES(
-                    %(mod_name)s,
-                    %(brand)s,
-                    %(type_vehicle)s)""", model)
+            cur.execute("""
+                        INSERT INTO models(
+                            model_name,
+                            brand,
+                            type_vehicle
+                        ) VALUES(
+                            %(mod_name)s,
+                            %(brand)s,
+                            %(type_vehicle)s)""", model)
             self.conn.commit()

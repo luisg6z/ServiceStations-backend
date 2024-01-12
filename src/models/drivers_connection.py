@@ -15,9 +15,10 @@ class DriversConnection():
             
     def read_all_drivers(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT
-                              driver_id,
-                              driver_name
+            data =cur.execute("""
+                              SELECT
+                                driver_id,
+                                driver_name
                               FROM drivers;""").fetchall()
             
             drivers = []
@@ -31,10 +32,11 @@ class DriversConnection():
     
     def write_driver(self, driver):
         with self.conn.cursor() as cur:
-            cur.execute("""INSERT INTO drivers(
-                driver_id,
-                driver_name
-                ) VALUES(
-                    %(driver_id)s,
-                    %(driver_name)s)""", driver)
+            cur.execute("""
+                        INSERT INTO drivers(
+                            driver_id,
+                            driver_name
+                        ) VALUES(
+                            %(driver_id)s,
+                            %(driver_name)s)""", driver)
             self.conn.commit()

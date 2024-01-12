@@ -15,12 +15,13 @@ class  DispatchedConnection():
             
     def read_all_Dispatched(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT 
-                              station_rif,
-                              plate,
-                              liters,
-                              dispatch_date,
-                              bs
+            data =cur.execute("""
+                              SELECT 
+                                station_rif,
+                                plate,
+                                liters,
+                                dispatch_date,
+                                bs
                               FROM dispatched;""").fetchall()
             
             Dispatched= []

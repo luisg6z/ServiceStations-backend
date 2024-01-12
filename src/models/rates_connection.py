@@ -15,9 +15,10 @@ class RatesConnection():
             
     def read_all_rates(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT
-                              rate_date,
-                              rates_value
+            data =cur.execute("""
+                              SELECT
+                                rate_date,
+                                rates_value
                               FROM  rates;""").fetchall()
             
             rates= []
@@ -31,10 +32,11 @@ class RatesConnection():
     
     def write_rate(self, rate):
         with self.conn.cursor() as cur:
-            cur.execute("""INSERT INTO rates(
-                rate_date,
-                rates_value
-                ) VALUES(
-                    %(rate_date)s,
-                    %(rates_value)s)""", rate)
+            cur.execute("""
+                        INSERT INTO rates(
+                            rate_date,
+                            rates_value
+                        ) VALUES(
+                            %(rate_date)s,
+                            %(rates_value)s)""", rate)
             self.conn.commit()

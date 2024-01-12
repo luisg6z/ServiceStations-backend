@@ -15,9 +15,10 @@ class  WorksInConnection():
             
     def read_all_WorksIn(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT
-                              station_rif,
-                              emp_id
+            data =cur.execute("""
+                              SELECT
+                                station_rif,
+                                emp_id
                               FROM  worksIn;""").fetchall()
             
             WorksIn= []

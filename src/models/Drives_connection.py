@@ -15,9 +15,10 @@ class   DrivesConnection():
             
     def read_all_Drives(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT
-                              driver_id,
-                              plateTT
+            data =cur.execute("""
+                              SELECT
+                                driver_id,
+                                plateTT
                               FROM drives;""").fetchall()
             
             Drives= []

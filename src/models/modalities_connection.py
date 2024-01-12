@@ -15,9 +15,10 @@ class modalitiesConnection():
             
     def read_all_modalities(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT
-                              modality_id,
-                              descrpt
+            data =cur.execute("""
+                              SELECT
+                                modality_id,
+                                descrpt
                               FROM modalities;""").fetchall()
             
             modalities = []

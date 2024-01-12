@@ -15,14 +15,15 @@ class  VehiclesConnection():
             
     def read_all_Vehicles(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT
-                              plate,
-                              model,
-                              capacity,
-                              year_release,
-                              serial_bodywork,
-                              serial_chassis,
-                              owner_id
+            data =cur.execute("""
+                              SELECT
+                                plate,
+                                model,
+                                capacity,
+                                year_release,
+                                serial_bodywork,
+                                serial_chassis,
+                                owner_id
                               FROM vehicles;""").fetchall()
             
             Vehicles= []
@@ -41,20 +42,21 @@ class  VehiclesConnection():
     
     def write_Vehicles(self,Vehicles):
         with self.conn.cursor() as cur:
-            cur.execute("""INSERT INTO Vehicles(
-                plate,
-                model,
-                capacity,
-                year_release,
-                serial_bodywork,
-                serial_chassis,
-                owner_id
-                ) VALUES(
-                    %(plate)s,
-                    %(model)s,
-                    %(capacity)s,
-                    %(year_release)s,
-                    %(serial_bodywork)s,
-                    %(serial_chassis)s,
-                    %(owner_id)s)""", Vehicles)
+            cur.execute("""
+                        INSERT INTO Vehicles(
+                            plate,
+                            model,
+                            capacity,
+                            year_release,
+                            serial_bodywork,
+                            serial_chassis,
+                            owner_id
+                        ) VALUES(
+                            %(plate)s,
+                            %(model)s,
+                            %(capacity)s,
+                            %(year_release)s,
+                            %(serial_bodywork)s,
+                            %(serial_chassis)s,
+                            %(owner_id)s)""", Vehicles)
             self.conn.commit()

@@ -15,15 +15,16 @@ class  ServiceStationsConnection():
             
     def read_all_ServiceStations(self):
         with self.conn.cursor() as cur:
-            data =cur.execute("""SELECT
-                              station_rif,
-                              adress,
-                              amount_of_fuel,
-                              payment_type,
-                              station_name,
-                              city_id,
-                              manager_id,
-                              manager_start_date
+            data =cur.execute("""
+                              SELECT
+                                station_rif,
+                                adress,
+                                amount_of_fuel,
+                                payment_type,
+                                station_name,
+                                city_id,
+                                manager_id,
+                                manager_start_date
                               FROM servicestations;""").fetchall()
             
             ServiceStations= []
@@ -43,21 +44,22 @@ class  ServiceStationsConnection():
         
     def write_ServiceStations(self, ServiceStations):
         with self.conn.cursor() as cur:
-            cur.execute("""INSERT INTO ServiceStations(
-                station_rif,adress,
-                amount_of_fuel,
-                payment_type,
-                station_name,
-                city_id,
-                manager_id,
-                manager_start_date
-                ) VALUES(
-                    %(station_rif)s,
-                    %(adress)s,
-                    %(amount_of_fuel)s,
-                    %(payment_type)s,
-                    %(station_name)s,
-                    %(city_id )s,
-                    %(manager_id)s,
-                    %(manager_start_date)s)""", ServiceStations)
+            cur.execute("""
+                        INSERT INTO ServiceStations(
+                            station_rif,adress,
+                            amount_of_fuel,
+                            payment_type,
+                            station_name,
+                            city_id,
+                            manager_id,
+                            manager_start_date
+                        ) VALUES(
+                            %(station_rif)s,
+                            %(adress)s,
+                            %(amount_of_fuel)s,
+                            %(payment_type)s,
+                            %(station_name)s,
+                            %(city_id )s,
+                            %(manager_id)s,
+                            %(manager_start_date)s)""", ServiceStations)
             self.conn.commit()
