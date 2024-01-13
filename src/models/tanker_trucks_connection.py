@@ -31,4 +31,18 @@ class tankertrucksConnection():
             return tankertrucks
         
     
-        
+    def write_tankertrucks(self,tankertrucks):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO tankertrucks(
+                                plateTT,
+                                capacity_lit
+                            ) VALUES(
+                                %(plateTT)s,
+                                %(capacity_lit)s )""", tankertrucks)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

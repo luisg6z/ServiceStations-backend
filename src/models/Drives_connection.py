@@ -29,4 +29,19 @@ class   DrivesConnection():
                 Drives.append(dic)
             
             return  Drives
-      
+    
+    def write_Drives(self, Drives):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO Drives(
+                                driver_id,
+                                plateTT
+                            ) VALUES(
+                                %(driver_id)s,
+                                %(plateTT)s )""", Drives)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

@@ -31,3 +31,19 @@ class citiesConnection():
                 cities.append(dic)
             
             return cities
+    
+    def write_cities(self, cities):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO cities(
+                                city_name,
+                                state_id
+                            ) VALUES(
+                                %(city_name)s,
+                                %(state_id)s)""", cities)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

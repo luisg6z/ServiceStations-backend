@@ -33,14 +33,19 @@ class ModelsConnection():
             return models
     
     def write_model(self, model):
-        with self.conn.cursor() as cur:
-            cur.execute("""
-                        INSERT INTO models(
-                            model_name,
-                            brand,
-                            type_vehicle
-                        ) VALUES(
-                            %(mod_name)s,
-                            %(brand)s,
-                            %(type_vehicle)s)""", model)
-            self.conn.commit()
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO models(
+                                model_name,
+                                brand,
+                                type_vehicle
+                            ) VALUES(
+                                %(mod_name)s,
+                                %(brand)s,
+                                %(type_vehicle)s)""", model)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

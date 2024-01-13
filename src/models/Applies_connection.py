@@ -33,4 +33,23 @@ class  AppliesConnection():
                 Applies.append(dic)
             
             return Applies
-      
+    
+    def write_applies(self, applies):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO applies(
+                                modality_id,
+                                city_id,
+                                aplies_start_date,
+                                aplies_End_date
+                            ) VALUES(
+                                %(modality_id)s,
+                                %(city_id)s,
+                                %(aplies_start_date)s,
+                                %(aplies_End_date)s)""", applies)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

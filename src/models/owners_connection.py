@@ -33,23 +33,19 @@ class OwnersConnection():
             return  owners
     
     def write_owners(self,owners):
-        with self.conn.cursor() as cur:
-            cur.execute("""
-                        INSERT INTO owners(
-                            owner_id,
-                            email,
-                            owner_name
-                        ) VALUES(
-                            %(owner_id)s,
-                            %(email)s,
-                            %(owner_name)s)""", owners)
-            
-            cur.execute("""
-                        INSERT INTO OwnersPhones(
-                            owner_id,
-                            phone_number_own
-                        ) VALUES(
-                            %(owner_id)s,
-                            %(phone)s)""", owners)
-            
-            self.conn.commit()
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO owners(
+                                owner_id,
+                                email,
+                                owner_name
+                            ) VALUES(
+                                %(owner_id)s,
+                                %(email)s,
+                                %(owner_name)s)""", owners)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close() 

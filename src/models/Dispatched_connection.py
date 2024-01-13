@@ -38,32 +38,42 @@ class  DispatchedConnection():
         
     
     def write_dispatch(self, dispatch):
-        with self.conn.cursor() as cur:
-            cur.execute("""
-                        INSERT INTO dispatched(
-                            station_rif,
-                            plate,
-                            dispatch_date,
-                            liters,
-                            bs
-                        ) VALUES(
-                            %(station_rif)s,
-                            %(plate)s,
-                            %(dispatch_date)s,
-                            %(liters)s,
-                            %(bs)s);""", dispatch)
-            self.conn.commit()
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO dispatched(
+                                station_rif,
+                                plate,
+                                dispatch_date,
+                                liters,
+                                bs
+                            ) VALUES(
+                                %(station_rif)s,
+                                %(plate)s,
+                                %(dispatch_date)s,
+                                %(liters)s,
+                                %(bs)s);""", dispatch)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()
             
     def update_dispatch(self, dispatch):
-        with self.conn.cursor() as cur:
-            cur.execute("""
-                        UPDATE drivers
-                        SET
-                        liters = %(liters)s,
-                        bs = %(bs)s,
-                        WHERE
-                        station_rif = %(station_rif)s AND
-                        plate = %(plate)s AND
-                        dispatch_date = %(dispatch_date)s
-                        """, dispatch)
-            self.conn.commit()
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE drivers
+                            SET
+                            liters = %(liters)s,
+                            bs = %(bs)s,
+                            WHERE
+                            station_rif = %(station_rif)s AND
+                            plate = %(plate)s AND
+                            dispatch_date = %(dispatch_date)s
+                            """, dispatch)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

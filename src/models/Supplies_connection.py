@@ -37,4 +37,28 @@ class  SuppliesConnection():
                 Supplies.append(dic)
             
             return  Supplies
-      
+    
+    def write_Supplies(self,Supplies):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO Supplies(
+                                station_rif,
+                                plate,
+                                Supplies_date,
+                                liters,
+                                driver_id,
+                                plateTT
+                            ) VALUES(
+                                %(state_id)s,
+                                %(station_rif)s,
+                                %(plate)s,
+                                %(Supplies_date)s,
+                                %(liters)s,
+                                %(driver_id)s,
+                                %(plateTT)s )""", Supplies)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

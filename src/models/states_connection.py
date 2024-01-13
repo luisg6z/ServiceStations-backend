@@ -29,3 +29,19 @@ class  statesConnection():
                 states.append(dic)
             
             return  states
+    
+    def write_states(self,states):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO states(
+                                state_id,
+                                state_name
+                            ) VALUES(
+                                %(state_id)s,
+                                %(state_name)s)""", states)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

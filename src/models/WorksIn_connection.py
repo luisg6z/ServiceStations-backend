@@ -29,4 +29,20 @@ class  WorksInConnection():
                 WorksIn.append(dic)
             
             return  WorksIn
-      
+    
+    def write_WorksIn(self,WorksIn):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO WorksIn(
+                                station_rif,
+                                emp_id
+                            ) VALUES(
+                                %(station_rif)s,
+                                %(emp_id)s )""", WorksIn)
+                self.conn.commit()
+                
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

@@ -29,3 +29,17 @@ class modalitiesConnection():
                 modalities.append(dic)
             
             return modalities
+    
+    def write_modalities(self,modalities):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO modalities(
+                                descrpt
+                            ) VALUES(
+                                %(descrpt)s )""", modalities)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()
