@@ -6,4 +6,3 @@ class Employee(BaseModel):
     last_name :str
     adress : str
     email : str
-    phone : str
