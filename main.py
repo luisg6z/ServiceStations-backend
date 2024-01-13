@@ -17,6 +17,8 @@ from src.routes.WorksIn import  WorksIn_router
 from src.routes.Supplies import  Supplies_router
 from src.routes.Applies import  Applies_router
 from src.routes.Drives import  Drives_router
+from src.routes.employees_phones import EmployeesPhones_router
+from src.routes.owners_phones import OwnersPhones_router
 
 app = FastAPI()
 
@@ -37,3 +39,5 @@ app.include_router(WorksIn_router)
 app.include_router(Supplies_router)
 app.include_router(Applies_router)
 app.include_router(Drives_router)
+app.include_router(EmployeesPhones_router)
+app.include_router(OwnersPhones_router)
