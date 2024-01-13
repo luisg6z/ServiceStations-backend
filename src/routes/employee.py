@@ -6,14 +6,15 @@ from src.schemas.employee_schema import Employee
 
 employee_router = APIRouter()
 
-conn = EmployeeConnection()
 
 @employee_router.get("/employee", status_code=HTTP_200_OK, tags=["Empleado"])
 def read_employees():
+    conn = EmployeeConnection()
     return conn.read_all_employees()
 
 @employee_router.post("/employee/insert", status_code=HTTP_201_CREATED, tags=["Empleado"])
 def create_employee( employee : Employee):
+    conn = EmployeeConnection()
     data = dict(employee)
     conn.write_employee(data)
     return Response(status_code=HTTP_201_CREATED)

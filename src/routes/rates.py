@@ -6,14 +6,15 @@ from src.schemas.rates_schema import Rates
 
 rates_router = APIRouter()
 
-conn =RatesConnection()
 
 @rates_router.get("/rates", status_code=HTTP_200_OK, tags=["Tasas"])
 def read_all_rates():
+    conn =RatesConnection()
     return conn.read_all_rates()
 
 @rates_router.post("/rates/insert", status_code=HTTP_201_CREATED, tags=["Tasas"])
 def create_rate(rate : Rates):
+    conn =RatesConnection()
     data = dict(rate)
     conn.write_rate(data)
     return Response(status_code=HTTP_201_CREATED)

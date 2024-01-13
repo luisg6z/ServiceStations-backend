@@ -6,14 +6,15 @@ from src.schemas.tanker_trucks_schema import TankerTrucks
 
 tankertrucks_router = APIRouter()
 
-conn = tankertrucksConnection()
 
 @tankertrucks_router.get("/tanker-trucks", status_code=HTTP_200_OK, tags=["Camiones Cisterna"])
-def read_tankertrucks():
+def read_tanker_trucks():
+    conn = tankertrucksConnection()
     return conn.read_all_tankertrucks()
 
 @tankertrucks_router.post("/tanker-trucks/insert", status_code=HTTP_201_CREATED, tags=["Camiones Cisterna"])
-def create_tabker_truck(tank_truck : TankerTrucks):
+def create_tanker_truck(tank_truck : TankerTrucks):
+    conn = tankertrucksConnection()
     data = dict(tank_truck)
     conn.write_tanker_truck(data)
     return Response(status_code=HTTP_201_CREATED)

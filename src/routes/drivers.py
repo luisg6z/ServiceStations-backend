@@ -6,14 +6,15 @@ from src.schemas.drivers_schema import Drivers
 
 drivers_router = APIRouter()
 
-conn = DriversConnection()
 
 @drivers_router.get("/drivers", status_code=HTTP_200_OK, tags=["Conductores"])
 def read_Drivers():
+    conn = DriversConnection()
     return conn.read_all_drivers()
 
 @drivers_router.post("/drivers/insert", status_code=HTTP_201_CREATED, tags=["Conductores"])
 def create_driver(driver : Drivers):
+    conn = DriversConnection()
     data = dict(driver)
     conn.write_driver(data)
     return Response(status_code=HTTP_201_CREATED)

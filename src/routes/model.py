@@ -6,14 +6,15 @@ from src.schemas.model_schema import Models
 
 models_router = APIRouter()
 
-conn =ModelsConnection()
 
 @models_router.get("/models", status_code=HTTP_200_OK, tags=["Modelos"])
 def read_all_model():
+    conn =ModelsConnection()
     return conn.read_all_models()
 
 @models_router.post("/models/insert", status_code=HTTP_201_CREATED, tags=["Modelos"])
 def create_model( model : Models):
+    conn =ModelsConnection()
     data = dict(model)
     conn.write_model(data)
     return Response(status_code=HTTP_201_CREATED)

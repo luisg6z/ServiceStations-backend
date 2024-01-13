@@ -6,14 +6,15 @@ from src.schemas.service_stations_schema import ServiceStations
 
 ServiceStations_router = APIRouter()
 
-conn =ServiceStationsConnection()
 
 @ServiceStations_router.get("/ServiceStations", status_code=HTTP_200_OK, tags=["Estaciones de servicio"])
-def read_all_ServiceStations():
+def read_all_service_stations():
+    conn =ServiceStationsConnection()
     return conn.read_all_ServiceStations()
 
 @ServiceStations_router.post("/service-stations/insert", status_code=HTTP_201_CREATED, tags=["Estaciones de servicio"])
-def create_payment( serv_station : ServiceStations):
+def create_service_station( serv_station : ServiceStations):
+    conn =ServiceStationsConnection()
     data = dict(serv_station)
     conn.write_service_station(data)
     return Response(status_code=HTTP_201_CREATED)
