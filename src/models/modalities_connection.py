@@ -43,3 +43,18 @@ class modalitiesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def update_modality(self, modality):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE modalities
+                            SET
+                            descrpt = %(descrpt)s
+                            WHERE modality_id = %(modality_id)s
+                            """, modality)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

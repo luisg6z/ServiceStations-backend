@@ -65,3 +65,23 @@ class  VehiclesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def update_vehicle(self, vehicle):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE vehicles
+                            SET
+                            model = %(model)s,
+                            capacity = %(capacity)s,
+                            year_release = %(year_release)s,
+                            serial_bodywork = %(serial_bodywork)s,
+                            serial_chassis = %(serial_chassis)s,
+                            owner_id = %(owner_id)s
+                            WHERE plate = %(plate)s
+                            """, vehicle)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

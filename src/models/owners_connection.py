@@ -49,3 +49,19 @@ class OwnersConnection():
             raise(ex)
         finally:
             self.conn.close() 
+    
+    def update_owner(self, owner):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE owners
+                            SET
+                            email = %(email)s,
+                            owner_name = %(owner_name)s
+                            WHERE owner_id = %(owner_id)s
+                            """, owner)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

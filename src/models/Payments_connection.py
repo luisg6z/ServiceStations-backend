@@ -70,3 +70,22 @@ class  PaymentsConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+    def update_payment(self, payment):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE payments
+                            SET
+                            amount = %(amount)s,
+                            payment_type = %(payment_type)s,
+                            card_number = %(card_number)s,
+                            bank = %(bank)s,
+                            currency = %(currency)s
+                            WHERE payment_id = %(payment_id)s
+                            """, payment)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

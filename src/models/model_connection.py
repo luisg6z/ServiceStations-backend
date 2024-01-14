@@ -49,3 +49,19 @@ class ModelsConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+    def update_model(self, model):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE models
+                            SET
+                            brand = %(brand)s,
+                            type_vehicle = %(type_vehicle)s
+                            WHERE mod_name = %(mod_name)s
+                            """, model)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

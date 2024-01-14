@@ -47,3 +47,18 @@ class citiesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def update_city(self, city):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE city
+                            SET
+                            city_name = %(city_name)s
+                            WHERE city_id = %(city_id)s
+                            """, city)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

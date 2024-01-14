@@ -43,3 +43,18 @@ class  statesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def update_states(self, state):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE states
+                            SET
+                            state_name = %(state_name)s
+                            WHERE state_id = %(state_id)s
+                            """, state)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

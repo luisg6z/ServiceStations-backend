@@ -45,3 +45,18 @@ class RatesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def update_rate(self, rate):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE rates
+                            SET
+                            rate_value = %(rate_value)s
+                            WHERE rate_date = %(rate_date)s
+                            """, rate)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

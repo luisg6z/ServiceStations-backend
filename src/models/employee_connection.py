@@ -58,3 +58,21 @@ class EmployeeConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+    def update_employee(self, employee):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE employees
+                            SET
+                            first_name = %(first_name)s,
+                            last_name = %(last_name)s,
+                            adress = %(adress)s,
+                            email = %(email)s
+                            WHERE emp_id = %(emp_id)s
+                            """, employee)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

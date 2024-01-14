@@ -46,3 +46,18 @@ class tankertrucksConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+    def update_tanker_truck(self, truck):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE tankertrucks
+                            SET
+                            capacity_lit = %(capacity_lit)s
+                            WHERE plateTT = %(plateTT)s
+                            """, truck)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

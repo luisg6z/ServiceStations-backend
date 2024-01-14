@@ -57,3 +57,20 @@ class  SuppliesConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+    def update_supplies(self, supply):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE supplies
+                            SET
+                            liters = %(liters)s
+                            WHERE station_id = %(station_id)s AND
+                            supplies_date = %(supplies_date)s AND
+                            plateTT = %(plateTT)s
+                            """, supply)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

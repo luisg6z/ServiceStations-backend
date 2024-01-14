@@ -46,3 +46,4 @@ class  WorksInConnection():
             raise(ex)
         finally:
             self.conn.close()
+            

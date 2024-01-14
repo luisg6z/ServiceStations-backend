@@ -69,3 +69,24 @@ class  ServiceStationsConnection():
             raise(ex)
         finally:
             self.conn.close()
+        
+    def update_service_station(self, station):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            UPDATE servicestations
+                            SET
+                            adress = %(adress)s,
+                            amount_of_fuel = %(adress)s,
+                            payment_type = %(payment_type)s,
+                            station_name = %(station_name)s,
+                            city_id = %(city_id)s,
+                            manager_id = %(manager_id)s,
+                            manager_start_date = %(manager_start_date)s
+                            WHERE station_rif = %(station_rif)s
+                            """, station)
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()
