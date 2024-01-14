@@ -18,3 +18,10 @@ def create_driver(driver : Drivers):
     data = dict(driver)
     conn.write_driver(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@drivers_router.put("/drivers/update", status_code=HTTP_201_CREATED, tags=["Conductores"])
+def update_drivers(drivers: Drivers):
+    conn = DriversConnection()
+    data = dict(drivers)
+    conn.update_driver(data)
+    return Response(status_code=HTTP_201_CREATED)

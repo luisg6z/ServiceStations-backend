@@ -19,3 +19,10 @@ def create_dispatch(dispatch : Dispatched):
     data = dict(dispatch)
     conn.write_dispatch(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Dispatched_router.put("/dispatched/update", status_code=HTTP_201_CREATED, tags=["Despachan"])
+def update_dispatch(dispatch: Dispatched):
+    conn = DispatchedConnection()
+    data = dict(dispatch)
+    conn.update_dispatch(data)
+    return Response(status_code=HTTP_201_CREATED)
