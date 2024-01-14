@@ -35,10 +35,8 @@ class  statesConnection():
             with self.conn.cursor() as cur:
                 cur.execute("""
                             INSERT INTO states(
-                                state_id,
                                 state_name
                             ) VALUES(
-                                %(state_id)s,
                                 %(state_name)s)""", states)
                 self.conn.commit()
         except Exception as ex:

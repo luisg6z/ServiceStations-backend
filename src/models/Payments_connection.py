@@ -50,7 +50,7 @@ class  PaymentsConnection():
                             INSERT INTO payments(
                                 payment_date,
                                 amount,
-                                payment_date,
+                                payment_type,
                                 card_number,
                                 bank,
                                 currency,
@@ -59,7 +59,7 @@ class  PaymentsConnection():
                             ) VALUES (
                                 %(payment_date)s,
                                 %(amount)s,
-                                %(payment_date)s,
+                                %(payment_type)s,
                                 %(card_number)s,
                                 %(bank)s,
                                 %(currency)s,

@@ -19,8 +19,8 @@ class  DispatchedConnection():
                               SELECT 
                                 station_rif,
                                 plate,
-                                liters,
                                 dispatch_date,
+                                liters,
                                 bs
                               FROM dispatched;""").fetchall()
             
@@ -63,14 +63,14 @@ class  DispatchedConnection():
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                            UPDATE drivers
+                            UPDATE dispatched
                             SET
-                            liters = %(liters)s,
-                            bs = %(bs)s,
+                                liters = %(liters)s,
+                                bs = %(bs)s
                             WHERE
-                            station_rif = %(station_rif)s AND
-                            plate = %(plate)s AND
-                            dispatch_date = %(dispatch_date)s
+                                station_rif = %(station_rif)s AND
+                                plate = %(plate)s AND
+                                dispatch_date = %(dispatch_date)s
                             """, dispatch)
                 self.conn.commit()
         except Exception as ex:

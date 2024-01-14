@@ -35,7 +35,7 @@ class  OwnersPhonesConnection():
                                 phone_number_own
                             ) VALUES(
                                 %(owner_id)s,
-                                %(phone)s)""", OwnersPhones)
+                                %(phone_number_own)s)""", OwnersPhones)
                 self.conn.commit()
         except Exception as ex:
             raise(ex)

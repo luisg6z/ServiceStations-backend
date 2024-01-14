@@ -34,12 +34,12 @@ class  EmployeesPhonesConnection():
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                            INSERT INTO EmployeesPhones(
+                            INSERT INTO employeesphones(
                                 emp_id,
                                 phone_number_emp
-                            ) VALUES(
+                            )VALUES(
                                 %(emp_id)s,
-                                x%(phone)s)""", EmployeesPhones)
+                                %(phone_number_emp)s);""", EmployeesPhones)
                 self.conn.commit()
         except Exception as ex:
             raise(ex)

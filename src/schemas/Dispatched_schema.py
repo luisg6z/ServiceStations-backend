@@ -7,4 +7,4 @@ class Dispatched(BaseModel):
     plate : str 
     dispatch_date : date
     liters : float
-    Bs : Optional[float]
+    bs : Optional[float]

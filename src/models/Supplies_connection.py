@@ -18,7 +18,6 @@ class  SuppliesConnection():
             data =cur.execute("""
                               SELECT
                                 station_rif,
-                                plate,
                                 supplies_date,
                                 liters,
                                 driver_id,
@@ -29,11 +28,10 @@ class  SuppliesConnection():
             for emp in data:
                 dic = {}
                 dic["station_rif"] = emp[0]
-                dic["plate"] = emp[1]
-                dic["Supplies_date"]= emp[2]
-                dic["liters"] = emp[3]
-                dic["driver_id"] = emp[4]
-                dic["plateTT"] = emp[5]
+                dic["Supplies_date"]= emp[1]
+                dic["liters"] = emp[2]
+                dic["driver_id"] = emp[3]
+                dic["plateTT"] = emp[4]
                 Supplies.append(dic)
             
             return  Supplies
@@ -44,15 +42,12 @@ class  SuppliesConnection():
                 cur.execute("""
                             INSERT INTO Supplies(
                                 station_rif,
-                                plate,
                                 Supplies_date,
                                 liters,
                                 driver_id,
                                 plateTT
                             ) VALUES(
-                                %(state_id)s,
                                 %(station_rif)s,
-                                %(plate)s,
                                 %(Supplies_date)s,
                                 %(liters)s,
                                 %(driver_id)s,

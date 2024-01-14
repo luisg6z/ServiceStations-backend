@@ -61,7 +61,7 @@ class  ServiceStationsConnection():
                                 %(amount_of_fuel)s,
                                 %(payment_type)s,
                                 %(station_name)s,
-                                %(city_id )s,
+                                %(city_id)s,
                                 %(manager_id)s,
                                 %(manager_start_date)s)""", ServiceStations)
                 self.conn.commit()

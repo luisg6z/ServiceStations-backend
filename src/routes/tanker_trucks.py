@@ -16,5 +16,5 @@ def read_tanker_trucks():
 def create_tanker_truck(tank_truck : TankerTrucks):
     conn = tankertrucksConnection()
     data = dict(tank_truck)
-    conn.write_tanker_truck(data)
+    conn.write_tankertrucks(data)
     return Response(status_code=HTTP_201_CREATED)

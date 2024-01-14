@@ -16,5 +16,5 @@ def read_all_service_stations():
 def create_service_station( serv_station : ServiceStations):
     conn =ServiceStationsConnection()
     data = dict(serv_station)
-    conn.write_service_station(data)
+    conn.write_ServiceStations(data)
     return Response(status_code=HTTP_201_CREATED)

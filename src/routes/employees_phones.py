@@ -13,7 +13,7 @@ def read_all_EmployeesPhones():
     return conn.read_all_EmployeesPhones()
 
 @EmployeesPhones_router.post("/EmployeesPhones/insert", status_code=HTTP_201_CREATED, tags=["Telefonos Empleados"])
-def create_applies(EmployeesPhones: EmployeesPhones):
+def create_employee_phone(EmployeesPhones: EmployeesPhones):
     conn =EmployeesPhonesConnection()
     data = dict(EmployeesPhones)
     conn.write_EmployeesPhones(data)
