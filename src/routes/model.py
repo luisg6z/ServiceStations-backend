@@ -18,3 +18,10 @@ def create_model( model : Models):
     data = dict(model)
     conn.write_model(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@models_router.put("/models/update", status_code=HTTP_201_CREATED, tags=["Modelos"])
+def update_model(model: Models):
+    conn = ModelsConnection()
+    data = dict(model)
+    conn.update_model(data)
+    return Response(status_code=HTTP_201_CREATED)

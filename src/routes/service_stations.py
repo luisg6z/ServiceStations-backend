@@ -7,7 +7,7 @@ from src.schemas.service_stations_schema import ServiceStations
 ServiceStations_router = APIRouter()
 
 
-@ServiceStations_router.get("/ServiceStations", status_code=HTTP_200_OK, tags=["Estaciones de servicio"])
+@ServiceStations_router.get("/service-stations", status_code=HTTP_200_OK, tags=["Estaciones de servicio"])
 def read_all_service_stations():
     conn =ServiceStationsConnection()
     return conn.read_all_ServiceStations()
@@ -17,4 +17,11 @@ def create_service_station( serv_station : ServiceStations):
     conn =ServiceStationsConnection()
     data = dict(serv_station)
     conn.write_ServiceStations(data)
+    return Response(status_code=HTTP_201_CREATED)
+
+@ServiceStations_router.put("/service-stations/update", status_code=HTTP_201_CREATED, tags=["Estaciones de servicio"])
+def update_service_station( serv_station : ServiceStations):
+    conn =ServiceStationsConnection()
+    data = dict(serv_station)
+    conn.update_service_station(data)
     return Response(status_code=HTTP_201_CREATED)

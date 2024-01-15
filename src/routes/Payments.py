@@ -18,3 +18,10 @@ def create_payment(payment : Payments):
     data = dict(payment)
     conn.write_payment(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Payments_router.put("/payments/update", status_code=HTTP_201_CREATED, tags=["Pagos"])
+def update_payment(payment : Payments):
+    conn =PaymentsConnection()
+    data = dict(payment)
+    conn.update_payment(data)
+    return Response(status_code=HTTP_201_CREATED)

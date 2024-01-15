@@ -18,3 +18,10 @@ def create_rate(rate : Rates):
     data = dict(rate)
     conn.write_rate(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@rates_router.put("/rates/update", status_code=HTTP_201_CREATED, tags=["Tasas"])
+def update_rate(rate : Rates):
+    conn =RatesConnection()
+    data = dict(rate)
+    conn.update_rate(data)
+    return Response(status_code=HTTP_201_CREATED)

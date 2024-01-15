@@ -77,7 +77,7 @@ class  ServiceStationsConnection():
                             UPDATE servicestations
                             SET
                             adress = %(adress)s,
-                            amount_of_fuel = %(adress)s,
+                            amount_of_fuel = %(amount_of_fuel)s,
                             payment_type = %(payment_type)s,
                             station_name = %(station_name)s,
                             city_id = %(city_id)s,

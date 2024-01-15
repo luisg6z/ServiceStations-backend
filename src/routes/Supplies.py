@@ -18,3 +18,10 @@ def create_supplies(supplies : Supplies):
     data = dict(supplies)
     conn.write_Supplies(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Supplies_router.put("/supplies/update", status_code=HTTP_201_CREATED, tags=["Surte"])
+def update_supplies(supplies : Supplies):
+    conn =SuppliesConnection()
+    data = dict(supplies)
+    conn.update_supplies(data)
+    return Response(status_code=HTTP_201_CREATED)

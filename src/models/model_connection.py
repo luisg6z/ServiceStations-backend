@@ -58,7 +58,7 @@ class ModelsConnection():
                             SET
                             brand = %(brand)s,
                             type_vehicle = %(type_vehicle)s
-                            WHERE mod_name = %(mod_name)s
+                            WHERE model_name = %(mod_name)s
                             """, model)
                 self.conn.commit()
         except Exception as ex:

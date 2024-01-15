@@ -17,3 +17,10 @@ def create_city(city : Cities):
     data = dict(city)
     conn.write_cities(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@cities_router.put("/cities/update", status_code=HTTP_201_CREATED, tags=["Ciudades"])
+def update_city(city: Cities):
+    conn = citiesConnection()
+    data = dict(city)
+    conn.update_city(data)
+    return Response(status_code=HTTP_201_CREATED)

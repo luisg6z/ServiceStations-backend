@@ -60,10 +60,10 @@ class  AppliesConnection():
                 cur.execute("""
                             UPDATE applies
                             SET
-                            applies_end_date = %(applies_end_date)s
+                            aplies_end_date = %(aplies_End_date)s
                             WHERE modality_id = %(modality_id)s AND
-                            city_id = %(city_id)s
-                            applies_start_date = %(applies_start_date)s
+                            city_id = %(city_id)s AND
+                            aplies_start_date = %(aplies_start_date)s
                             """, applies)
                 self.conn.commit()
         except Exception as ex:

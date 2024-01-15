@@ -52,7 +52,7 @@ class RatesConnection():
                 cur.execute("""
                             UPDATE rates
                             SET
-                            rate_value = %(rate_value)s
+                            rates_value = %(rates_value)s
                             WHERE rate_date = %(rate_date)s
                             """, rate)
                 self.conn.commit()

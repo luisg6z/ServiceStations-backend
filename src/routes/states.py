@@ -18,3 +18,10 @@ def create_state(state : States):
     data = dict(state)
     conn.write_states(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@states_router.put("/states/update", status_code=HTTP_201_CREATED, tags=["Estados"])
+def update_state(state : States):
+    conn =statesConnection()
+    data = dict(state)
+    conn.update_states(data)
+    return Response(status_code=HTTP_201_CREATED)

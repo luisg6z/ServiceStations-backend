@@ -18,3 +18,10 @@ def create_modality(modality : Modalities):
     data = dict(modality)
     conn.write_modalities(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@modalities_router.put("/modalities/update", status_code=HTTP_201_CREATED, tags=["Modalidades"])
+def update_modality(modality: Modalities):
+    conn = modalitiesConnection()
+    data = dict(modality)
+    conn.update_modality(data)
+    return Response(status_code=HTTP_201_CREATED)

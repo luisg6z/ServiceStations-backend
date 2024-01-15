@@ -52,7 +52,7 @@ class citiesConnection():
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                            UPDATE city
+                            UPDATE cities
                             SET
                             city_name = %(city_name)s
                             WHERE city_id = %(city_id)s

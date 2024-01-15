@@ -18,3 +18,10 @@ def create_applies(applies : Applies):
     data = dict(applies)
     conn.write_applies(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Applies_router.put("/applies/update", status_code=HTTP_201_CREATED, tags=["Aplica"])
+def update_drivers(applies: Applies):
+    conn = AppliesConnection()
+    data = dict(applies)
+    conn.update_applies(data)
+    return Response(status_code=HTTP_201_CREATED)

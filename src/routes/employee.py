@@ -18,3 +18,10 @@ def create_employee( employee : Employee):
     data = dict(employee)
     conn.write_employee(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@employee_router.put("/employee/update", status_code=HTTP_201_CREATED, tags=["Empleado"])
+def update_employee(employee: Employee):
+    conn = EmployeeConnection()
+    data = dict(employee)
+    conn.update_employee(data)
+    return Response(status_code=HTTP_201_CREATED)

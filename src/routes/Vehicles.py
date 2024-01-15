@@ -18,3 +18,10 @@ def create_vehicle(vehicle : Vehicles):
     data = dict(vehicle)
     conn.write_Vehicles(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Vehicles_router.put("/vehicles/update", status_code=HTTP_201_CREATED, tags=["Vehiculos"])
+def update_vehicle(vehicle : Vehicles):
+    conn =VehiclesConnection()
+    data = dict(vehicle)
+    conn.update_vehicle(data)
+    return Response(status_code=HTTP_201_CREATED)

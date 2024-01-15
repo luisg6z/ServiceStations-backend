@@ -18,3 +18,10 @@ def create_tanker_truck(tank_truck : TankerTrucks):
     data = dict(tank_truck)
     conn.write_tankertrucks(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@tankertrucks_router.put("/tanker-trucks/update", status_code=HTTP_201_CREATED, tags=["Camiones Cisterna"])
+def update_tanker_truck(tank_truck : TankerTrucks):
+    conn = tankertrucksConnection()
+    data = dict(tank_truck)
+    conn.update_tanker_truck(data)
+    return Response(status_code=HTTP_201_CREATED)

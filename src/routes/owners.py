@@ -18,3 +18,10 @@ def create_owners(owners : Owners):
     data = dict(owners)
     conn.write_owners(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@owners_router.put("/owners/update", status_code=HTTP_201_CREATED, tags=["Propietarios"])
+def update_owner(owner: Owners):
+    conn = OwnersConnection()
+    data = dict(owner)
+    conn.update_owner(data)
+    return Response(status_code=HTTP_201_CREATED)
