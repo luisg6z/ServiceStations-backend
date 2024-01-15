@@ -90,3 +90,17 @@ class  ServiceStationsConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_service_station(self,station_rif):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM servicestations
+                            WHERE
+                            station_rif = %s
+                            """, (station_rif,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

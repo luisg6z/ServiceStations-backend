@@ -77,3 +77,19 @@ class  DispatchedConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_dispatch(self,station_rif, plate, dispatch_date):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM applies
+                            WHERE
+                            station_rif = %s AND
+                            plate = %s AND
+                            dispatch_date = %s
+                            """, (station_rif, plate, dispatch_date))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

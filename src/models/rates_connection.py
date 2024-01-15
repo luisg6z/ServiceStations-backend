@@ -60,3 +60,17 @@ class RatesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_rate(self,rate_date):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM rates
+                            WHERE
+                            rate_date = %s
+                            """, (rate_date,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

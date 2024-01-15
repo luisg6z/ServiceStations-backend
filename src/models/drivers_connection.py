@@ -60,3 +60,17 @@ class DriversConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_driver(self, driver_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM drivers
+                            WHERE
+                            driver_id = %s
+                            """, (driver_id,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

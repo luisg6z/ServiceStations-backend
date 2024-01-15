@@ -76,3 +76,17 @@ class EmployeeConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+    def delete_employee(self,emp_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM employees
+                            WHERE
+                            emp_id = %s
+                            """, (emp_id,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

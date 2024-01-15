@@ -46,3 +46,18 @@ class   DrivesConnection():
         finally:
             self.conn.close()
     
+    def delete_drives(self,driver_id, plateTT):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM drives
+                            WHERE
+                            driver_id = %s AND
+                            plateTT = %s
+                            """, (driver_id, plateTT))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()
+    

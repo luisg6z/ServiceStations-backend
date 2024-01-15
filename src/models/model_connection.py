@@ -65,3 +65,17 @@ class ModelsConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_model(self,model_name):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM models
+                            WHERE
+                            model_name = %s
+                            """, (model_name,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

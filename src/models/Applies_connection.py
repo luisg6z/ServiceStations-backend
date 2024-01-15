@@ -70,3 +70,19 @@ class  AppliesConnection():
             raise(ex)
         finally:
             self.conn.close()
+        
+    def delete_applies(self,modality_id, city_id, aplies_start_date):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM applies
+                            WHERE
+                            modality_id = %s AND
+                            city_id = %s AND
+                            aplies_start_date = %s
+                            """, (modality_id, city_id, aplies_start_date))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

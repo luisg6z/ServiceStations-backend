@@ -65,3 +65,17 @@ class OwnersConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+    def delete_owner(self,owner_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM owners
+                            WHERE
+                            owner_id = %s
+                            """, (owner_id,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

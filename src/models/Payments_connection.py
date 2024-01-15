@@ -89,3 +89,17 @@ class  PaymentsConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_payment(self,payment_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM payments
+                            WHERE
+                            payment_id = %s
+                            """, (payment_id,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

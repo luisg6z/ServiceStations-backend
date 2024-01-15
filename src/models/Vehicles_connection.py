@@ -85,3 +85,17 @@ class  VehiclesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_vehicle(self,plate):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM vehicles
+                            WHERE
+                            plate = %s
+                            """, (plate,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

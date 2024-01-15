@@ -45,4 +45,18 @@ class  EmployeesPhonesConnection():
             raise(ex)
         finally:
             self.conn.close()
-            
+    
+    def delete_employee_phone(self,emp_id, phone_number_emp):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM employeesphones
+                            WHERE
+                            emp_id = %s AND
+                            phone_number_emp_id = %s
+                            """, (emp_id, phone_number_emp))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

@@ -58,3 +58,17 @@ class modalitiesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_modality(self,modality_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM modalities
+                            WHERE
+                            modality_id = %s
+                            """, (modality_id))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

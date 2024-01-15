@@ -46,4 +46,18 @@ class  WorksInConnection():
             raise(ex)
         finally:
             self.conn.close()
-            
+    
+    def delete_works_in(self,emp_id, station_rif):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM worksin
+                            WHERE
+                            emp_id = %s AND
+                            station_rif = %s
+                            """, (emp_id, station_rif))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

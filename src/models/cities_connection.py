@@ -62,3 +62,17 @@ class citiesConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_city(self,city_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM city
+                            WHERE
+                            city_id = %s
+                            """, (city_id,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()

@@ -61,3 +61,17 @@ class tankertrucksConnection():
             raise(ex)
         finally:
             self.conn.close()
+    
+    def delete_tanker_truck(self, plateTT):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                            DELETE FROM tankertrucks
+                            WHERE
+                            plateTT = %s
+                            """, (plateTT,))
+                self.conn.commit()
+        except Exception as ex:
+            raise(ex)
+        finally:
+            self.conn.close()
