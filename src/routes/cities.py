@@ -24,3 +24,9 @@ def update_city(city: Cities):
     data = dict(city)
     conn.update_city(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@cities_router.delete("/cities/delete/{city_id}", status_code=HTTP_204_NO_CONTENT, tags=["Ciudades"])
+def delete_city(city_id: int):
+    conn = citiesConnection()
+    conn.delete_city(city_id)
+    return Response(status_code=HTTP_204_NO_CONTENT)

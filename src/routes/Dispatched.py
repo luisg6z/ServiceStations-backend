@@ -1,3 +1,5 @@
+from datetime import date
+
 from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
@@ -26,3 +28,9 @@ def update_dispatch(dispatch: Dispatched):
     data = dict(dispatch)
     conn.update_dispatch(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Dispatched_router.delete("/dispatched/delete/{station_rif}/{plate}/{dispatch_date}", status_code=HTTP_204_NO_CONTENT, tags=["Despachan"])
+def delete_dispatch(station_rif:str, plate:str, dispatch_date: date):
+    conn = DispatchedConnection()
+    conn.delete_dispatch(station_rif, plate, dispatch_date)
+    return Response(status_code=HTTP_204_NO_CONTENT)
