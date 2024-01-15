@@ -25,3 +25,9 @@ def update_employee(employee: Employee):
     data = dict(employee)
     conn.update_employee(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@employee_router.delete("/employee/delete/{emp_id}", status_code=HTTP_204_NO_CONTENT, tags=["Empleado"])
+def delete_employee(emp_id: str):
+    conn = EmployeeConnection()
+    conn.delete_employee(emp_id)
+    return Response(status_code=HTTP_204_NO_CONTENT)

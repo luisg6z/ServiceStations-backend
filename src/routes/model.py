@@ -25,3 +25,9 @@ def update_model(model: Models):
     data = dict(model)
     conn.update_model(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@models_router.delete("/models/delete/{model_name}", status_code=HTTP_204_NO_CONTENT, tags=["Modelos"])
+def delete_model(model_name: str):
+    conn = ModelsConnection()
+    conn.delete_model_model(model_name)
+    return Response(status_code=HTTP_201_CREATED)

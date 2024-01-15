@@ -25,3 +25,9 @@ def update_vehicle(vehicle : Vehicles):
     data = dict(vehicle)
     conn.update_vehicle(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Vehicles_router.delete("/vehicles/delete/{plate}", status_code=HTTP_204_NO_CONTENT, tags=["Vehiculos"])
+def delete_vehicle(plate: str):
+    conn = VehiclesConnection
+    conn.delete_vehicle(plate)
+    return Response(status_code=HTTP_204_NO_CONTENT)

@@ -1,3 +1,5 @@
+from datetime import date
+
 from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
@@ -25,3 +27,9 @@ def update_supplies(supplies : Supplies):
     data = dict(supplies)
     conn.update_supplies(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Supplies_router.delete("/supplies/delete/{station_rif}/{supplies_date}/{plateTT}", status_code=HTTP_204_NO_CONTENT, tags=["Conductores"])
+def delete_supplies(station_rif: str, supplies_date:date, plateTT:str):
+    conn = SuppliesConnection()
+    conn.delete_driver(station_rif, supplies_date, plateTT)
+    return Response(status_code=HTTP_204_NO_CONTENT)

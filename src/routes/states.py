@@ -25,3 +25,9 @@ def update_state(state : States):
     data = dict(state)
     conn.update_states(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@states_router.delete("/states/delete/{state_id}", status_code=HTTP_204_NO_CONTENT, tags=["Estados"])
+def delete_state(state_id: int):
+    conn = statesConnection()
+    conn.delete_state(state_id)
+    return Response(status_code=HTTP_204_NO_CONTENT)

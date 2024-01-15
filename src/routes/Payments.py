@@ -25,3 +25,9 @@ def update_payment(payment : Payments):
     data = dict(payment)
     conn.update_payment(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@Payments_router.delete("/payments/delete/{payment_id}", status_code=HTTP_204_NO_CONTENT, tags=["Pagos"])
+def delete_payment(payment_id: str):
+    conn = PaymentsConnection()
+    conn.delete_payment(payment_id)
+    return Response(status_code=HTTP_204_NO_CONTENT)

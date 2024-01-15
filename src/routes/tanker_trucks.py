@@ -25,3 +25,9 @@ def update_tanker_truck(tank_truck : TankerTrucks):
     data = dict(tank_truck)
     conn.update_tanker_truck(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@tankertrucks_router.delete("/tanker-trucks/delete/{plateTT}", status_code=HTTP_204_NO_CONTENT, tags=["Camiones Cisterna"])
+def delete_tanker_truck(plateTT: str):
+    conn = tankertrucksConnection
+    conn.delete_tanker_truck(plateTT)
+    return Response(status_code=HTTP_204_NO_CONTENT)

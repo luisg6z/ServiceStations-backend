@@ -25,3 +25,9 @@ def update_modality(modality: Modalities):
     data = dict(modality)
     conn.update_modality(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@modalities_router.delete("/modalities/delete/{modality_id}", status_code=HTTP_204_NO_CONTENT, tags=["Modalidades"])
+def update_modality(modality_id: int):
+    conn = modalitiesConnection()
+    conn.delete_modality()
+    return Response(status_code=HTTP_204_NO_CONTENT)

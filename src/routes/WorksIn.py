@@ -17,3 +17,9 @@ def create_works_in(works_in : WorksIn):
     data = dict(works_in)
     conn.write_WorksIn(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@WorksIn_router.delete("/drivers/delete/{emp_id}/{station_rif}", status_code=HTTP_204_NO_CONTENT, tags=["Conductores"])
+def delete_works_in(emp_id: str, station_rif:str):
+    conn = WorksInConnection()
+    conn.delete_works_in(emp_id, station_rif)
+    return Response(status_code=HTTP_204_NO_CONTENT)

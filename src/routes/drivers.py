@@ -27,7 +27,7 @@ def update_drivers(drivers: Drivers):
     return Response(status_code=HTTP_201_CREATED)
 
 @drivers_router.delete("/drivers/delete/{driver_id}", status_code=HTTP_204_NO_CONTENT, tags=["Conductores"])
-def delete_driver(driver_id: int):
-    conn = DriversConnection
+def delete_driver(driver_id: str):
+    conn = DriversConnection()
     conn.delete_driver(driver_id)
     return Response(status_code=HTTP_204_NO_CONTENT)

@@ -25,3 +25,9 @@ def update_service_station( serv_station : ServiceStations):
     data = dict(serv_station)
     conn.update_service_station(data)
     return Response(status_code=HTTP_201_CREATED)
+
+@ServiceStations_router.delete("/service-stations/delete/{station_rif}", status_code=HTTP_204_NO_CONTENT, tags=["Estaciones de servicio"])
+def delete_service_station(station_rif: str):
+    conn = ServiceStationsConnection()
+    conn.delete_service_station(station_rif)
+    return Response(status_code=HTTP_204_NO_CONTENT)
