@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from src.routes.employee import employee_router
 from src.routes.drivers import drivers_router
@@ -41,3 +42,13 @@ app.include_router(Applies_router)
 app.include_router(Drives_router)
 app.include_router(EmployeesPhones_router)
 app.include_router(OwnersPhones_router)
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
