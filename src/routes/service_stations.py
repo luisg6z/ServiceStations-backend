@@ -1,3 +1,5 @@
+from datetime import date
+
 from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
@@ -31,3 +33,13 @@ def delete_service_station(station_rif: str):
     conn = ServiceStationsConnection()
     conn.delete_service_station(station_rif)
     return Response(status_code=HTTP_204_NO_CONTENT)
+
+@ServiceStations_router.get("/service-stations/{start_date}/{end_date}", status_code=HTTP_200_OK, tags=["Estaciones de servicio"])
+def daily_gas_service_stations(start_date:date, end_date:date):
+    conn =ServiceStationsConnection()
+    return conn.alert_stations(start_date, end_date)
+
+@ServiceStations_router.get("/service-stations/alert", status_code=HTTP_200_OK, tags=["Estaciones de servicio"])
+def alert_service_stations():
+    conn =ServiceStationsConnection()
+    return conn.alert_stations()

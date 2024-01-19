@@ -3,6 +3,7 @@ from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
 from src.models.Vehicles_connection import VehiclesConnection
 from src.schemas.vehicles_schema import Vehicles
+from src.schemas.vehicle_dispatch_schema import VehicleDispatch
 
 Vehicles_router = APIRouter()
 
@@ -31,3 +32,8 @@ def delete_vehicle(plate: str):
     conn = VehiclesConnection
     conn.delete_vehicle(plate)
     return Response(status_code=HTTP_204_NO_CONTENT)
+
+@Vehicles_router.get("/Vehicles/dispatch", status_code=HTTP_200_OK, tags=["Vehiculos"])
+def vehicles_dispatched(vehicle_dispatch : VehicleDispatch):
+    conn =VehiclesConnection()
+    return conn.vehicles_dispatched(vehicle_dispatch)
