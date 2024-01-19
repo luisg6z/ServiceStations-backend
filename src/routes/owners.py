@@ -26,7 +26,7 @@ def update_owner(owner: Owners):
     conn.update_owner(data)
     return Response(status_code=HTTP_201_CREATED)
 
-@owners_router.delete("/owners/delete/{owner_id}", status_code=HTTP_204_NO_CONTENT, tags=["[Propietarios]"])
+@owners_router.delete("/owners/delete/{owner_id}", status_code=HTTP_204_NO_CONTENT, tags=["Propietarios"])
 def delete_owners(owner_id: str):
     conn = OwnersConnection
     conn.delete_owner(owner_id)

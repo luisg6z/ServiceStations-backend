@@ -27,7 +27,7 @@ def update_modality(modality: Modalities):
     return Response(status_code=HTTP_201_CREATED)
 
 @modalities_router.delete("/modalities/delete/{modality_id}", status_code=HTTP_204_NO_CONTENT, tags=["Modalidades"])
-def update_modality(modality_id: int):
+def delete_modality(modality_id: int):
     conn = modalitiesConnection()
-    conn.delete_modality()
+    conn.delete_modality(modality_id)
     return Response(status_code=HTTP_204_NO_CONTENT)
