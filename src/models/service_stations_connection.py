@@ -12,7 +12,7 @@ class  ServiceStationsConnection():
         except psycopg.OperationalError as err:
             print(err)
             
-            
+            #LEER ESTACION DE SERVICIO
     def read_all_ServiceStations(self):
         with self.conn.cursor() as cur:
             data =cur.execute("""
@@ -42,6 +42,7 @@ class  ServiceStationsConnection():
             
             return  ServiceStations
         
+        #CREAR ESTACION DE SERVICIO
     def write_ServiceStations(self, ServiceStations):
         try:
             with self.conn.cursor() as cur:
@@ -70,6 +71,7 @@ class  ServiceStationsConnection():
         finally:
             self.conn.close()
         
+        #ACTUALIZAR ESTACION DE SERVICIO
     def update_service_station(self, station):
         try:
             with self.conn.cursor() as cur:
@@ -91,6 +93,7 @@ class  ServiceStationsConnection():
         finally:
             self.conn.close()
     
+        #BORRAR ESTACION DE SERVICIO
     def delete_service_station(self,station_rif):
         try:
             with self.conn.cursor() as cur:
@@ -104,3 +107,26 @@ class  ServiceStationsConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+            #Promedio de gasolina diaria en cada estacion
+    def daily_gas(self, start_date, end_date):
+        with self.conn.cursor() as cur:
+            cur.execute("""
+                        SELECT ss.station_rif, ss.station_name, AVG(s.liters)
+                        FROM supplies as s, servicestations as ss
+                        WHERE
+                            s.station_rif = ss.station_rif AND
+                            s.supplies_date >= %s AND
+                            s.supplies_date <= %s
+                        GROUP BY ss.station_rif;
+                        """, (start_date, end_date))
+    
+            #ALERTA DE POCO COMBUSTIBLE
+    def alert_stations(self):
+        with self.conn.cursor() as cur:
+            cur.execute("""
+                        SELECT station_rif, station_name
+                        FROM servicestations
+                        WHERE amount_of_fuel < 800;
+                        """)
+            

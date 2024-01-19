@@ -66,7 +66,7 @@ class modalitiesConnection():
                             DELETE FROM modalities
                             WHERE
                             modality_id = %s
-                            """, (modality_id))
+                            """, (modality_id,))
                 self.conn.commit()
         except Exception as ex:
             raise(ex)

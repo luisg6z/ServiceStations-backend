@@ -12,7 +12,7 @@ class  VehiclesConnection():
         except psycopg.OperationalError as err:
             print(err)
             
-            
+            #LEER VEHICULOS
     def read_all_Vehicles(self):
         with self.conn.cursor() as cur:
             data =cur.execute("""
@@ -39,7 +39,8 @@ class  VehiclesConnection():
                 Vehicles.append(dic)
             
             return Vehicles
-    
+
+        #CREAR VEHICULO
     def write_Vehicles(self,Vehicles):
         try:
             with self.conn.cursor() as cur:
@@ -66,6 +67,7 @@ class  VehiclesConnection():
         finally:
             self.conn.close()
     
+        #ACTUALIZAR VEHICULO
     def update_vehicle(self, vehicle):
         try:
             with self.conn.cursor() as cur:
@@ -86,6 +88,7 @@ class  VehiclesConnection():
         finally:
             self.conn.close()
     
+        #BORRAR VEHICULO
     def delete_vehicle(self,plate):
         try:
             with self.conn.cursor() as cur:
@@ -99,3 +102,21 @@ class  VehiclesConnection():
             raise(ex)
         finally:
             self.conn.close()
+            
+            #VEHICULOS DESPACHADOS POR TIPO, EN RANGO DE FECHAS
+    def vehicles_dispatched(self, data):
+        with self.conn.cursor() as cur:
+            cur.execute("""
+                        SELECT v.plate, m.type_vehicle, COUNT(*) AS cantidad
+                        FROM vehicles v
+                        JOIN models m ON v.model = m.model_name
+                        JOIN dispatched as d ON v.plate = d.plate
+                        JOIN servicestations s ON d.station_rif = s.station_rif
+                        JOIN cities c ON s.city_id = c.city_id
+                        JOIN states st ON c.state_id = st.state_id
+                        WHERE
+                        st.state_id = %(state_id)s AND
+                        c.city_id = %(city_id)s AND
+                        d.dispatch_date BETWEEN %(start_date)s AND %(end_date)s
+                        GROUP BY m.type_vehicle, v.plate;
+                        """, data)
