@@ -1,3 +1,5 @@
+from datetime import date
+
 from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
@@ -33,7 +35,7 @@ def delete_vehicle(plate: str):
     conn.delete_vehicle(plate)
     return Response(status_code=HTTP_204_NO_CONTENT)
 
-@Vehicles_router.get("/Vehicles/dispatch", status_code=HTTP_200_OK, tags=["Vehiculos"])
-def vehicles_dispatched(vehicle_dispatch : VehicleDispatch):
+@Vehicles_router.get("/Vehicles/dispatch/{city_id}/{state_id}/{start_date}/{end_date}", status_code=HTTP_200_OK, tags=["Vehiculos"])
+def vehicles_dispatched(city_id:int, state_id:int, start_date:date, end_date:date):
     conn =VehiclesConnection()
-    return conn.vehicles_dispatched(vehicle_dispatch)
+    return conn.vehicles_dispatched(city_id, state_id, start_date, end_date)

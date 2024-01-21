@@ -210,6 +210,24 @@ CREATE TABLE Models (                                       ---9Modelos----
     CONSTRAINT const_type_vehicle CHECK(type_vehicle = 'C' OR type_vehicle = 'M')
 );
 
+CREATE TABLE Historic_supplies(
+    station_rif VARCHAR(11) NOT NULL,
+    supplies_date DATE NOT NULL,
+    liters REAL NOT NULL,
+    driver_id VARCHAR(10),
+    plateTT VARCHAR(8) NOT NULL,
+    PRIMARY KEY (station_rif, plateTT, Supplies_date, driver_id)
+);
+
+CREATE TABLE Historic_dispatched(
+    station_rif VARCHAR(11) NOT NULL,
+    plate VARCHAR(8) NOT NULL,
+    dispatch_date DATE NOT NULL,
+    liters REAL NOT NULL,
+    Bs REAL,
+    PRIMARY KEY (station_rif, plate, dispatch_date)
+);
+
 --Trigger cuando ocurre un despacho
 
 
@@ -242,3 +260,33 @@ CREATE TRIGGER raise_trigger
 AFTER INSERT ON Supplies
 FOR EACH ROW
 EXECUTE FUNCTION raise_fuel();
+
+--TRIGGER PARA INSERTAR EN HISTORICOS DE SUMINISTROS
+
+CREATE OR REPLACE FUNCTION insert_historic_supplies() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO historic_supplies (station_rif, supplies_date, liters, driver_id, plateTT)
+    VALUES (OLD.station_rif, OLD.supplies_date, OLD.liters, OLD.driver_id, OLD.plateTT);
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_name
+AFTER DELETE OR UPDATE ON supplies
+FOR EACH ROW
+EXECUTE FUNCTION insert_historic_supplies();
+
+--TRIGGER PARA INSERTAR EN HISTORICOS DE SUMINISTROS
+
+CREATE OR REPLACE FUNCTION insert_historic_dispatched() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO historic_dispatched (station_rif, plate, dispatch_date, liters, bs)
+    VALUES (OLD.station_rif, OLD.plate, OLD.dispatch_date, OLD.liters, OLD.bs);
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_name
+AFTER DELETE OR UPDATE ON dispatched
+FOR EACH ROW
+EXECUTE FUNCTION insert_historic_dispatched();

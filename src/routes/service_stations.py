@@ -37,7 +37,7 @@ def delete_service_station(station_rif: str):
 @ServiceStations_router.get("/service-stations/{start_date}/{end_date}", status_code=HTTP_200_OK, tags=["Estaciones de servicio"])
 def daily_gas_service_stations(start_date:date, end_date:date):
     conn =ServiceStationsConnection()
-    return conn.alert_stations(start_date, end_date)
+    return conn.daily_gas(start_date, end_date)
 
 @ServiceStations_router.get("/service-stations/alert", status_code=HTTP_200_OK, tags=["Estaciones de servicio"])
 def alert_service_stations():

@@ -104,10 +104,10 @@ class  VehiclesConnection():
             self.conn.close()
             
             #VEHICULOS DESPACHADOS POR TIPO, EN RANGO DE FECHAS
-    def vehicles_dispatched(self, data):
+    def vehicles_dispatched(self, state_id, city_id, start_date, end_date):
         with self.conn.cursor() as cur:
-            cur.execute("""
-                        SELECT v.plate, m.type_vehicle, COUNT(*) AS cantidad
+            data = cur.execute("""
+                        SELECT s.station_rif, m.type_vehicle,COUNT(*) AS cantidad
                         FROM vehicles v
                         JOIN models m ON v.model = m.model_name
                         JOIN dispatched as d ON v.plate = d.plate
@@ -115,8 +115,17 @@ class  VehiclesConnection():
                         JOIN cities c ON s.city_id = c.city_id
                         JOIN states st ON c.state_id = st.state_id
                         WHERE
-                        st.state_id = %(state_id)s AND
-                        c.city_id = %(city_id)s AND
-                        d.dispatch_date BETWEEN %(start_date)s AND %(end_date)s
-                        GROUP BY m.type_vehicle, v.plate;
-                        """, data)
+                        st.state_id = %s AND
+                        c.city_id = %s AND
+                        d.dispatch_date BETWEEN %s AND %s
+                        GROUP BY s.station_rif, m.type_vehicle;
+                        """, (state_id, city_id, start_date, end_date))
+            vehicles = []
+            for one in data:
+                dic = {}
+                dic["station_rif"] = one[0]
+                dic["type_vehicle"] = one[1]
+                dic["quantity"] = one[2]
+                vehicles.append(dic)
+            
+            return vehicles

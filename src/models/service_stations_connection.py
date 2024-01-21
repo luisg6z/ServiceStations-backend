@@ -111,7 +111,7 @@ class  ServiceStationsConnection():
             #Promedio de gasolina diaria en cada estacion
     def daily_gas(self, start_date, end_date):
         with self.conn.cursor() as cur:
-            cur.execute("""
+            data = cur.execute("""
                         SELECT ss.station_rif, ss.station_name, AVG(s.liters)
                         FROM supplies as s, servicestations as ss
                         WHERE
@@ -120,13 +120,30 @@ class  ServiceStationsConnection():
                             s.supplies_date <= %s
                         GROUP BY ss.station_rif;
                         """, (start_date, end_date))
-    
+
+            stations = []
+            for one in data:
+                dic = {}
+                dic["station_rif"] = one[0]
+                dic["station_name"] = one[1]
+                dic["average_liters"] = one[2]
+                stations.append(dic)
+            
+            return stations
             #ALERTA DE POCO COMBUSTIBLE
     def alert_stations(self):
         with self.conn.cursor() as cur:
-            cur.execute("""
-                        SELECT station_rif, station_name
+            data = cur.execute("""
+                        SELECT station_rif, station_name, amount_of_fuel
                         FROM servicestations
                         WHERE amount_of_fuel < 800;
                         """)
-            
+            stations = []
+            for one in data:
+                dic = {}
+                dic["station_rif"] = one[0]
+                dic["station_name"] = one[1]
+                dic["amount_of_fuel"] = one[2]
+                stations.append(dic)
+        
+            return stations
