@@ -67,7 +67,7 @@ class citiesConnection():
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                            DELETE FROM city
+                            DELETE FROM cities
                             WHERE
                             city_id = %s
                             """, (city_id,))

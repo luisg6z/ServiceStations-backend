@@ -82,7 +82,7 @@ class  DispatchedConnection():
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                            DELETE FROM applies
+                            DELETE FROM dispatched
                             WHERE
                             station_rif = %s AND
                             plate = %s AND

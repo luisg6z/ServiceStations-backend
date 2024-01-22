@@ -210,6 +210,8 @@ CREATE TABLE Models (                                       ---9Modelos----
     CONSTRAINT const_type_vehicle CHECK(type_vehicle = 'C' OR type_vehicle = 'M')
 );
 
+                                                            ---Historico Suministros---
+
 CREATE TABLE Historic_supplies(
     station_rif VARCHAR(11) NOT NULL,
     supplies_date DATE NOT NULL,
@@ -218,6 +220,8 @@ CREATE TABLE Historic_supplies(
     plateTT VARCHAR(8) NOT NULL,
     PRIMARY KEY (station_rif, plateTT, Supplies_date, driver_id)
 );
+
+                                                            ---Historico Despachos ---
 
 CREATE TABLE Historic_dispatched(
     station_rif VARCHAR(11) NOT NULL,
