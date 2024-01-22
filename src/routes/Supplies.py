@@ -29,7 +29,7 @@ def update_supplies(supplies : Supplies):
     return Response(status_code=HTTP_201_CREATED)
 
 @Supplies_router.delete("/supplies/delete/{station_rif}/{supplies_date}/{plateTT}/{driver_id}", status_code=HTTP_204_NO_CONTENT, tags=["Surte"])
-def delete_supplies(station_rif: str, supplies_date:date, plateTT:str):
+def delete_supplies(station_rif: str, supplies_date:date, plateTT:str, driver_id:str):
     conn = SuppliesConnection()
-    conn.delete_driver(station_rif, supplies_date, plateTT)
+    conn.delete_driver(station_rif, supplies_date, plateTT, driver_id)
     return Response(status_code=HTTP_204_NO_CONTENT)
