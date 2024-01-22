@@ -19,7 +19,7 @@ def create_drives(drives : Drives):
     return Response(status_code=HTTP_201_CREATED)
 
 @Drives_router.delete("/drives/delete/{driver_id}/{plateTT}", status_code=HTTP_204_NO_CONTENT, tags=["Manejan"])
-def delete_driver(driver_id: str, plate: str):
+def delete_driver(driver_id: str, plateTT: str):
     conn = DrivesConnection()
-    conn.delete_drives(driver_id, plate)
+    conn.delete_drives(driver_id, plateTT)
     return Response(status_code=HTTP_204_NO_CONTENT)
