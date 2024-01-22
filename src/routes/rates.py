@@ -1,3 +1,5 @@
+from datetime import date
+
 from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
@@ -26,8 +28,8 @@ def update_rate(rate : Rates):
     conn.update_rate(data)
     return Response(status_code=HTTP_201_CREATED)
 
-@rates_router.delete("/rates/delete/{rate_id}", status_code=HTTP_204_NO_CONTENT, tags=["Tasas"])
-def delete_rate(rate_id: str):
+@rates_router.delete("/rates/delete/{rate_date}", status_code=HTTP_204_NO_CONTENT, tags=["Tasas"])
+def delete_rate(rate_date: date):
     conn = RatesConnection()
-    conn.delete_rate(rate_id)
+    conn.delete_rate(rate_date)
     return Response(status_code=HTTP_204_NO_CONTENT)
