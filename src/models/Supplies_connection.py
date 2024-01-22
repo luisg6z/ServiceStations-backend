@@ -76,17 +76,17 @@ class  SuppliesConnection():
         finally:
             self.conn.close()
     
-    def delete_supply(self,station_id, supplies_date, plateTT, driver_id):
+    def delete_supply(self,station_rif, supplies_date, plateTT, driver_id):
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
                             DELETE FROM supplies
                             WHERE
-                            station_id = %s AND
+                            station_rif = %s AND
                             supplies_date = %s AND
                             plateTT = %s AND
                             driver_id = %s
-                            """, (station_id, supplies_date, plateTT, driver_id))
+                            """, (station_rif, supplies_date, plateTT, driver_id))
                 self.conn.commit()
         except Exception as ex:
             raise(ex)
