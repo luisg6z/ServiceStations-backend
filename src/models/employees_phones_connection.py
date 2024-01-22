@@ -53,7 +53,7 @@ class  EmployeesPhonesConnection():
                             DELETE FROM employeesphones
                             WHERE
                             emp_id = %s AND
-                            phone_number_emp_id = %s
+                            phone_number_emp = %s
                             """, (emp_id, phone_number_emp))
                 self.conn.commit()
         except Exception as ex:

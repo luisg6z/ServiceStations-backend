@@ -21,5 +21,5 @@ def create_OwnersPhones(OwnersPhones: OwnersPhones):
 @OwnersPhones_router.delete("/owners-phones/delete/{own_id}/{phone_number_own}", status_code=HTTP_204_NO_CONTENT, tags=["Telefonos Dueños"])
 def delete_owner_phone(own_id: str, phone_number_own: str):
     conn = OwnersPhonesConnection()
-    conn.delete_employee_phone(own_id, phone_number_own)
+    conn.delete_owners_phone(own_id, phone_number_own)
     return Response(status_code=HTTP_204_NO_CONTENT)

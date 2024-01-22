@@ -20,7 +20,7 @@ def create_employee_phone(EmployeesPhones: EmployeesPhones):
     return Response(status_code=HTTP_201_CREATED)
 
 @EmployeesPhones_router.delete("/employees-phones/delete/{emp_id}/{phone_number_emp}", status_code=HTTP_204_NO_CONTENT, tags=["Telefonos Empleados"])
-def delete_employee_phone(emp_id: int, phone_number_emp: str):
+def delete_employee_phone(emp_id: str, phone_number_emp: str):
     conn = EmployeesPhonesConnection()
     conn.delete_employee_phone(emp_id, phone_number_emp)
     return Response(status_code=HTTP_204_NO_CONTENT)

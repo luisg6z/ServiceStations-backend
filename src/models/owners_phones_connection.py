@@ -42,7 +42,7 @@ class  OwnersPhonesConnection():
         finally:
             self.conn.close()
     
-    def delete_employee_phone(self,emp_id, phone_number_own):
+    def delete_owners_phone(self,owner_id, phone_number_own):
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
@@ -50,7 +50,7 @@ class  OwnersPhonesConnection():
                             WHERE
                             owner_id = %s AND
                             phone_number_own = %s
-                            """, (emp_id, phone_number_own))
+                            """, (owner_id, phone_number_own))
                 self.conn.commit()
         except Exception as ex:
             raise(ex)
