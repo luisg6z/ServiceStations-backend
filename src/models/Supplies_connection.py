@@ -65,8 +65,8 @@ class  SuppliesConnection():
                             UPDATE supplies
                             SET
                             liters = %(liters)s
-                            WHERE station_id = %(station_id)s AND
-                            supplies_date = %(supplies_date)s AND
+                            WHERE station_rif = %(station_rif)s AND
+                            Supplies_date = %(Supplies_date)s AND
                             plateTT = %(plateTT)s AND
                             driver_id = %(driver_id)s
                             """, supply)
