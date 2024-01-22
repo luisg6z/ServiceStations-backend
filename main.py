@@ -20,6 +20,8 @@ from src.routes.Applies import  Applies_router
 from src.routes.Drives import  Drives_router
 from src.routes.employees_phones import EmployeesPhones_router
 from src.routes.owners_phones import OwnersPhones_router
+from src.routes.historic_dispatched import historic_dispatched_router
+from src.routes.historic_supplies import historic_supplies_router
 
 app = FastAPI()
 
@@ -42,6 +44,8 @@ app.include_router(Applies_router)
 app.include_router(Drives_router)
 app.include_router(EmployeesPhones_router)
 app.include_router(OwnersPhones_router)
+app.include_router(historic_dispatched_router)
+app.include_router(historic_supplies_router)
 
 origins = ["*"]
 
