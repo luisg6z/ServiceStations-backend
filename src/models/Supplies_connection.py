@@ -67,7 +67,8 @@ class  SuppliesConnection():
                             liters = %(liters)s
                             WHERE station_id = %(station_id)s AND
                             supplies_date = %(supplies_date)s AND
-                            plateTT = %(plateTT)s
+                            plateTT = %(plateTT)s AND
+                            driver_id = %(driver_id)s
                             """, supply)
                 self.conn.commit()
         except Exception as ex:
@@ -75,7 +76,7 @@ class  SuppliesConnection():
         finally:
             self.conn.close()
     
-    def delete_supply(self,station_id, supplies_date, plateTT):
+    def delete_supply(self,station_id, supplies_date, plateTT, driver_id):
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
@@ -83,8 +84,9 @@ class  SuppliesConnection():
                             WHERE
                             station_id = %s AND
                             supplies_date = %s AND
-                            plateTT = %s
-                            """, (station_id, supplies_date, plateTT))
+                            plateTT = %s AND
+                            driver_id = %s
+                            """, (station_id, supplies_date, plateTT, driver_id))
                 self.conn.commit()
         except Exception as ex:
             raise(ex)
