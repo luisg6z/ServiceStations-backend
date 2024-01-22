@@ -25,7 +25,7 @@ def create_supplies(supplies : Supplies):
 def update_supplies(supplies : Supplies):
     conn =SuppliesConnection()
     data = dict(supplies)
-    conn.update_supplies(data)
+    conn.update_supplies(supplies)
     return Response(status_code=HTTP_201_CREATED)
 
 @Supplies_router.delete("/supplies/delete/{station_rif}/{supplies_date}/{plateTT}/{driver_id}", status_code=HTTP_204_NO_CONTENT, tags=["Surte"])
